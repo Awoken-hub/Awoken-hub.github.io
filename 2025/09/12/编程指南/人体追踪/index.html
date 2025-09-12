@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Body tracking | Microsoft Learn 本文讨论如何使用 Kinect 传感器的人体追踪功能。 人体数据帧通过 BodyFrameReader 访问的 人体数据帧（BodyFrame），提供了访问单个人体数据的方法 GetAndRefreshBodyData。此方法接收一个 IVector&lt;Body&gt; 参数，并用当前BodyFrame的值更新其中的 Body 实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Body tracking | Microsoft Learn 本文讨论如何使用 Kinect 传感器的人体追踪功能。 人体数据帧通过 BodyFrameReader 访问的 人体数据帧（BodyFrame），提供了访问单个人体数据的方法 GetAndRefreshBodyData。此方法接收一个 IVector&lt;Body&gt; 参数，并用当前BodyFrame的值更新其中的 Body 实">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-12T02:43:56.880Z">
+<meta property="article:modified_time" content="2025-09-11T14:21:55.778Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-编程指南/人体追踪" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.880Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn799273(v=ieb.10)">Body tracking | Microsoft Learn</a></p>
+<p>本文讨论如何使用 Kinect 传感器的人体追踪功能。</p>
+<h1 id="人体数据帧"><a href="#人体数据帧" class="headerlink" title="人体数据帧"></a>人体数据帧</h1><p>通过 <code>BodyFrameReader</code> 访问的 人体数据帧（<code>BodyFrame</code>），提供了访问单个人体数据的方法 <code>GetAndRefreshBodyData</code>。此方法接收一个 <code>IVector&lt;Body&gt;</code> 参数，并用当前<code>BodyFrame</code>的值更新其中的 <code>Body</code> 实例。如果传入的 <code>IVector</code> 为 <code>null</code>，则该参数将被填充为一个新创建的 <code>Body</code> 对象。输入的向量大小必须为 <code>BodyFrameSource::BodyCount</code>。</p>
+<p>此模式实现了零分配（zero-allocation）获取 <code>Body</code> 对象，同时允许未来对类进行扩展而不会破坏现有代码。</p>
+<p>以下代码示例展示了如何打开传感器、订阅 <code>BodyFrameArrived</code> 事件，并用当前的人体数据填充 bodies 向量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::InitKinect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  KinectSensor^ sensor = KinectSensor::<span class="built_in">GetDefault</span>();</span><br><span class="line">  sensor-&gt;<span class="built_in">Open</span>();</span><br><span class="line">  bodyReader = sensor-&gt;BodyFrameSource-&gt;<span class="built_in">OpenReader</span>();</span><br><span class="line">  bodyReader-&gt;FrameArrived += </span><br><span class="line">   ref <span class="keyword">new</span> <span class="built_in">TypedEventHandler</span>&lt;<span class="keyword">typename</span> BodyFrameArrivedEventArgs^&gt; (<span class="keyword">this</span>,                 </span><br><span class="line">                        &amp;MainPage::OnBodyFrameArrived);</span><br><span class="line">  bodies = ref <span class="keyword">new</span> Platform::Collections::<span class="built_in">Vector</span>&lt;Body^&gt;(<span class="number">6</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::OnBodyFrameArrived</span><span class="params">(BodyFrameReader ^sender, BodyFrameArrivedEventArgs ^eventArgs)</span></span>&#123;</span><br><span class="line">  BodyFrame ^frame = eventArgs-&gt;FrameReference-&gt;<span class="built_in">AcquireFrame</span>();</span><br><span class="line">  <span class="keyword">if</span> (frame != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">      frame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="人体数据"><a href="#人体数据" class="headerlink" title="人体数据"></a>人体数据</h1><p>自然用户界面（NUI）追踪到的身体是镜像显示的，就好像是玩家在照镜子一样。这使得玩家与游戏世界的交互更加自然。例如，要让玩家触摸屏幕右侧的一个物体，应使用其右侧的关节点。</p>
+<ul>
+<li><code>JointType::HandRight</code>（右手关节）</li>
+<li><code>JointType::HandTipRight</code>（右手指尖关节）</li>
+<li><code>JointType::ThumbRight</code>（右手拇指关节）</li>
+</ul>
+<h1 id="关节法线"><a href="#关节法线" class="headerlink" title="关节法线"></a>关节法线</h1><p>每个身体关节都有一个用于描述旋转的法线（normal）。旋转表示为世界空间中的一个向量，该向量垂直于该关节在层级结构中所连接的骨骼。例如，要确定右肘关节的滚转角度，需要使用其层级中的直接双亲关节（即右肩关节）来确定骨骼所在的平面。</p>
+<h1 id="关节层级"><a href="#关节层级" class="headerlink" title="关节层级"></a>关节层级</h1><p>关节层级从身体中心向四肢延伸，并且从最顶层的关节到最底层的关节依次排列。这些关节之间的连接关系称为骨骼（bones）。例如，右臂（不包含拇指）的骨骼由以下连接组成：</p>
+<ul>
+<li>右手 — 右手指尖</li>
+<li>右腕 — 右手</li>
+<li>右肘 — 右腕</li>
+<li>右肩 — 右肘</li>
+</ul>
+<p>按照惯例，骨骼被描述为<strong>亲子连接</strong>。</p>
+<h1 id="什么是-HandData"><a href="#什么是-HandData" class="headerlink" title="什么是 HandData"></a>什么是 HandData</h1><p><code>HandLeftState</code>和<code>HandRightState</code>属性提供了玩家的双手状态信息。你可以使用这些信息来判断玩家是否正在与游戏世界中的某个对象进行交互。</p>
+<p>返回的手部状态包括：</p>
+<ul>
+<li>Open（张开）</li>
+<li>Closed（握拳）</li>
+<li>Lasso（套索）</li>
+<li>NotTracked（未追踪）</li>
+<li>Unknown（未知）</li>
+</ul>
+<h1 id="使用套索手势"><a href="#使用套索手势" class="headerlink" title="使用套索手势"></a>使用套索手势</h1><p>相较于张开和握拳手势用途的直观，套索手势显得复杂一些。套索手势是指：手握拳，同时竖起食指和中指。这是一个类似指向的手势，但需要食指和中指两根手指；也类似于一个两指并拢的剪刀手。如果手足够大且靠近摄像头，只竖起一根手指也有可能被识别为套索。要求使用两根手指是为了在深度数据上形成足够大的特征以便系统能够识别。</p>
+<p>套索状态没有严格的使用规则。它可以被应用在如下手势机制中：</p>
+<ul>
+<li>用圆形圈出选择区域</li>
+<li>激活某个区域，比如屏幕上的某个对象</li>
+<li>在屏幕上绘画</li>
+<li>旋转屏幕对象（例如，在角色创建过程中旋转玩家的虚拟角色）</li>
+</ul>
+<p>其应用方式多种多样，具体取决于游戏设计和预期的玩家体验。</p>
+<h1 id="表情、行为与外观"><a href="#表情、行为与外观" class="headerlink" title="表情、行为与外观"></a>表情、行为与外观</h1><p>这部分并非对人体数据的计算，而是为了与 Xbox One 兼容而存在的。如果你希望获取表情、行为或外观信息，请参考[[面部追踪]]。</p>
+<h1 id="交互程度"><a href="#交互程度" class="headerlink" title="交互程度"></a>交互程度</h1><p>在之前的版本中，<code>Body::Engaged</code>属性可以用于判断某个用户与系统的交互程度。该属性现已弃用。请参考[[面部追踪]]来获取此类数据。</p>
+<h1 id="图像与人体数据的空间对齐"><a href="#图像与人体数据的空间对齐" class="headerlink" title="图像与人体数据的空间对齐"></a>图像与人体数据的空间对齐</h1><p>有时你可能需要在不同空间（深度、彩色、摄像机空间）中确定某些点的位置。例如，你想知道玩家的头部在彩色图像中的位置。</p>
+<p>你可以使用<code>CoordinateMapper</code>这个核心工具类，该类可以从<code>KinectSensor</code>实例中获取。以下代码示例展示了如何从彩色空间中获取代表人体头部关节的彩色像素点<code>ColorSpacePoint</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::OnBodyFrameArrived</span><span class="params">(Platform::Object ^sender, </span></span></span><br><span class="line"><span class="params"><span class="function">                                  BodyFrameArrivedEventArgs ^eventArgs)</span></span>&#123;</span><br><span class="line">&#123;</span><br><span class="line">  BodyFrame ^frame = eventArgs-&gt;FrameReference-&gt;<span class="built_in">AcquireFrame</span>();</span><br><span class="line">  <span class="keyword">if</span> (frame != <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    frame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">for</span> <span class="title">each</span> <span class="params">(Body ^body in bodies)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      Joint headJoint = body-&gt;Joints-&gt;<span class="built_in">Lookup</span>(JointType::Head);</span><br><span class="line">      CameraSpacePoint headLocation = headJoint.Position;</span><br><span class="line">      TrackingState headTrackingState = headJoint.TrackingState;</span><br><span class="line">        </span><br><span class="line">      CoordinateMapper ^mapper = </span><br><span class="line">        frame-&gt;BodyFrameSource-&gt;KinectSensor-&gt;CoordinateMapper;</span><br><span class="line">      ColorSpacePoint headPoint = mapper-&gt;<span class="built_in">MapCameraPointToColorSpace</span>(headLocation);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="在滤波中使用关节追踪状态"><a href="#在滤波中使用关节追踪状态" class="headerlink" title="在滤波中使用关节追踪状态"></a>在滤波中使用关节追踪状态</h1><p>被推断出的关节因为准确性较低，更有可能包含尖峰噪声。此外，推断关节的随机噪声水平通常也更高。在实际开发 Kinect 游戏时，开发者应将关节的追踪状态视为判断关节数据质量的重要依据，当关节追踪状态为“推断”时，采用更强力的平滑滤波器。这可以通过在滤波器的实现中检查关节追踪状态和基于关节追踪状态自适应地更新滤波器参数来轻松实现。此外，当关节追踪状态为“推断”时，应针对性地采用更擅长去除尖峰噪声的滤波器。</p>
+<p>如果你想了解更多关于关节滤波技术的内容，请阅读文档 Joint Filtering Best Practices 。</p>
+<h1 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h1><p>[[Kinect for Windows 编程指南]]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/" data-id="cmfg949s10003jcus25pfbljp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/Kinect%20for%20Windows%20%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%AB%98%E6%B8%85%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

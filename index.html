@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-编程指南/高清面部追踪" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%AB%98%E6%B8%85%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.905Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文内容</p>
+<ul>
+<li>[[#朝向与位置]]</li>
+<li>[[#动画单元]]</li>
+<li>[[#形状单元]]</li>
+<li>[[#面部模型]]</li>
+</ul>
+<p>高清面部追踪 API 主要支持两种场景：帮助玩家融入游戏，并在玩家与游戏之间建立更强烈的情感连接。</p>
+<ul>
+<li>面部捕捉 — 使用 API 获取玩家面部的形状。API 会告知游戏开发者用户需要位于摄像头视图中的哪个位置、所捕获帧的质量，并在捕获到足够多的有效帧后计算用户的面部形状并将这些数据提供给游戏开发者。随后，游戏开发者可以利用这些形状参数影响游戏角色的外观设计（例如，使玩家的游戏内角色看起来更像玩家本人）。</li>
+<li>面部追踪 — 使用 API 获取用户的实时面部表情，用于驱动游戏内玩家角色的动画。对于每一帧，开发者都将获得与玩家面部运动相关的动画单元。这既可以应用于已塑形为类似玩家外貌的游戏角色，也可以应用于与玩家外貌不同的通用游戏虚拟形象。此功能可与面部捕捉结合使用，也可单独使用。</li>
+</ul>
+<h1 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h1><p>WinRT API 会自动收集其输入。当开发者启动面部捕捉或订阅面部追踪流时，WinRT API 会将 Kinect 的彩色、深度和红外图像作为输入提供给 <code>FaceModelBuilder</code> 或高清面部追踪。</p>
+<p>追踪质量可能会受到这些输入帧图像质量的影响（即，较暗、模糊的帧追踪效果比明亮、清晰的帧差）。此外，较大、较近的面部比较小的面部追踪效果更好。API 仅会追踪那些 NUI 骨骼系统已识别出头部和颈部关节的帧。</p>
+<p>如果面部已被捕捉过，并且使用捕捉的输出来初始化面部追踪，追踪质量会更高。因为此时面部追踪器使用的是用户面部的精确几何形状，而不是平均几何形状，从而获得更准确的面部运动特征。</p>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><p>面部捕捉 API 输出一个面部形状，其定义为一组应用于面部模型的参数。这些参数包括一个指示面部大小的比例因子，以及一组指示面部形状与平均形状差异程度的形状单元（SU）权重。这组形状单元用于估算用户头部的特定形状：例如眉毛、鼻子、脸颊、嘴巴或下巴等特征的形状。</p>
+<p>在面部追踪过程中，API 会输出一个面部朝向、一个头部枢轴点以及一个动画单元列表（AUs）。</p>
+<p>动画单元是相对于中性形状的偏移量，你可以使用它们来变形指定的动画虚拟形象模型，使虚拟形象表现出被追踪的用户的面部动作。例如，动画单元定义了嘴巴是否张开、眉毛是否抬起等面部表情细节。</p>
+<h2 id="朝向与位置"><a href="#朝向与位置" class="headerlink" title="朝向与位置"></a>朝向与位置</h2><p>高清面部追踪返回的面部朝向是一个四元数，其解释与 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791601(v=ieb.10)"><code>FaceRotationQuaternion</code> 属性</a>相同。</p>
+<p><strong>头部枢轴点</strong>是计算出的头部中心，面部可围绕该点旋转。该点定义在 Kinect 人体坐标系中：原点位于相机的光学中心（传感器），Z 轴指向用户，Y 轴指向上方。测量单位为米。头部枢轴点与身体的头部关节点类似，但具有不同的垂直坐标（更适合作为旋转中心）。</p>
+<h2 id="动画单元"><a href="#动画单元" class="headerlink" title="动画单元"></a>动画单元</h2><p>该 API 追踪 17 个动画单元。大多数动画单元的权重范围为 0 到 1 ，其中有三个（下颌右滑、右眉下压、左眉下压）范围为 -1 到 +1 。</p>
+<p>动画单元的索引定义在<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791602(v=ieb.10)"> <code>FaceShapeAnimations</code> 枚举</a>中，其数量和含义可能会有变动。</p>
+<h2 id="形状单元"><a href="#形状单元" class="headerlink" title="形状单元"></a>形状单元</h2><p>共有 70 多个形状单元。形状单元的权重范围通常在 -2 到 +2 之间，但也可能超出该范围。</p>
+<p>有关形状单元的完整列表，请参阅 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791604(v=ieb.10)"><code>FaceShapeDeformations</code> 枚举</a>。形状单元的数量和含义可能会有变动。</p>
+<h2 id="面部模型"><a href="#面部模型" class="headerlink" title="面部模型"></a>面部模型</h2><p>您可以选择性地读取通过面部捕捉计算出的 3D 面部模型，包括网格中的每个顶点和三角形。</p>
+<p>部分网格顶点具有被预定好的含义，例如鼻尖和右眼外角。有关高精度面部点的完整列表，请参阅 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791778(v=ieb.10)"><code>HighDetailFacePoints</code> 枚举</a>。</p>
+<p>这些顶点的用途与 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791576(v=ieb.10)"><code>FaceFrame</code> 类</a>中的属性类似。不建议在屏幕上渲染此追踪模型，调试除外。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%AB%98%E6%B8%85%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" data-id="cmfg949s50007jcusfuxs6qdj" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/面部追踪" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.899Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文概述了 Kinect 面部追踪的编程模型。</p>
+<ul>
+<li><code>FaceFrame</code>对象</li>
+<li><code>FaceFrameResult</code>对象</li>
+<li><code>FaceFrame</code>数据</li>
+<li>边界框数据</li>
+<li>点数据</li>
+<li>面部旋转四元数</li>
+<li>面部属性</li>
+<li>数据库文件</li>
+<li>性能考虑</li>
+</ul>
+<h1 id="FaceFrame对象"><a href="#FaceFrame对象" class="headerlink" title="FaceFrame对象"></a><code>FaceFrame</code>对象</h1><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791576(v=ieb.10)"><code>FaceFrame</code>类</a>提供了一组关于被追踪者面部的基本信息，包括面部的位置、视线方向、基本表情信息以及是否佩戴眼镜。所有这些信息都可以在每个被追踪的人体上进行计算，最大有效距离为 3.5 米。</p>
+<h1 id="FaceFrameResult对象"><a href="#FaceFrameResult对象" class="headerlink" title="FaceFrameResult对象"></a><code>FaceFrameResult</code>对象</h1><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791565(v=ieb.10)"><code>FaceFrameResult</code>类</a>提供被追踪者面部基本信息，其数据在红外空间中计算，并映射到彩色空间。</p>
+<h1 id="FaceFrame数据"><a href="#FaceFrame数据" class="headerlink" title="FaceFrame数据"></a><code>FaceFrame</code>数据</h1><p>为方便起见，所有<code>FaceFrame</code>类数据均在红外空间中计算，然后映射到彩色空间。这意味着像 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773608(v=ieb.10)"><code>FaceFrameResult.FaceBoundingBoxInColorSpace</code> 属性</a>的结果会受限于红外摄像头的视野。这也意味着在所有几乎所有红外流可见的照明条件下（如室内、夜晚等），都能返回所有信息。唯一的例外是 <code>RightEyeClosed</code> 和 <code>LeftEyeClosed</code> (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791599(v=ieb.10)"><code>FaceFrameResult.FaceProperties</code> 属性</a>)，它们依赖于彩色视频流，并且会受到不良光照条件的负面影响。</p>
+<h1 id="边界框数据"><a href="#边界框数据" class="headerlink" title="边界框数据"></a>边界框数据</h1><p>面部检测结果包含一个<strong>边界框</strong>，这是一个由我们的面部检测算法确定的、包含用户头部的矩形。该边界框可通过 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773608(v=ieb.10)"><code>FaceFrameResult.FaceBoundingBoxInColorSpace</code> 属性</a>或 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773609(v=ieb.10)"><code>FaceFrameResult.FaceBoundingBoxInInfraredSpace</code> 属性</a>检索。</p>
+<h1 id="点数据"><a href="#点数据" class="headerlink" title="点数据"></a>点数据</h1><p>点数据可通过 <code>FaceFrameResult.FacePointsInColorSpace</code> 属性或 <code>FaceFrameResult.FacePointsInInfraredSpace</code> 属性检索。这些位置也称为<strong>对齐点</strong>，代表了用户脸上的五个标志性位置。这五个点分别是：左眼、右眼、鼻子以及左右嘴角。</p>
+<h1 id="面部旋转四元数"><a href="#面部旋转四元数" class="headerlink" title="面部旋转四元数"></a>面部旋转四元数</h1><p>通过 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791601(v=ieb.10)"><code>FaceRotationQuaternion</code> 属性</a>获得的<strong>头部枢轴点</strong>是计算出的头部中心，面部可围绕该点旋转。该点定义在 Kinect 人体坐标系中：原点位于相机的光学中心（传感器），Z 轴指向用户，Y 轴指向上方。测量单位为米。头部枢轴点与身体的头部关节点类似，但具有不同的垂直坐标（更适合作为旋转中心）。</p>
+<h1 id="面部属性"><a href="#面部属性" class="headerlink" title="面部属性"></a>面部属性</h1><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791599(v=ieb.10)"><code>FaceFrameResult.FaceProperties</code> 属性</a>返回一个只读的键-值对映射，提供有关用户面部外观或状态的信息。对于此映射中的每个条目，键是 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791600(v=ieb.10)"><code>FaceProperty</code> 枚举</a>的一个成员。下表列出了可用的属性。请注意，这些分类器的训练假设 Kinect 放置在内容源（电视等）的上方或下方，居中并朝向用户。</p>
+<table>
+<thead>
+<tr>
+<th>属性（Property）</th>
+<th>描述（Description）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Happy（高兴）</td>
+<td>用户似乎在微笑，呈现出高兴的表情。这也会捕捉到大笑时的笑容。请注意，有些用户即使不高兴也看起来像在笑，因此这不应被视为情绪的精确转换。</td>
+</tr>
+<tr>
+<td>Engaged（投入）</td>
+<td>结合了 <code>LookingAway</code> 和 <code>EyeClosed</code> 的结果，以确定用户是否专注于内容。</td>
+</tr>
+<tr>
+<td>WearingGlasses（戴眼镜）</td>
+<td>用户戴着眼镜。</td>
+</tr>
+<tr>
+<td>LeftEyeClosed（左眼闭合）</td>
+<td>用户的左眼是闭着的。</td>
+</tr>
+<tr>
+<td>RightEyeClosed（右眼闭合）</td>
+<td>用户的右眼是闭着的。</td>
+</tr>
+<tr>
+<td>MouthOpen（嘴巴张开）</td>
+<td>用户的嘴巴是张开的。</td>
+</tr>
+<tr>
+<td>MouthMoved（嘴巴移动）</td>
+<td>用户的嘴巴移动了。这是唯一一个需要跨帧结果才能做出准确判断的属性。如果用户的头部大部分时间保持静止，此功能效果最佳。</td>
+</tr>
+<tr>
+<td>LookingAway（视线移开）</td>
+<td>确定用户是否将视线从内容上移开。该检测不够精细，无法检测到轻微的视线转移，但可以检测到较大的头部运动，例如转头与人交谈或低头查看手机。</td>
+</tr>
+</tbody></table>
+<p>对于 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791599(v=ieb.10)"><code>FaceFrameResult.FaceProperties</code> 属性</a>映射中的每个条目，其值是 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758566(v=ieb.10)"><code>DetectionResult</code> 枚举</a>的一个成员，表示系统对相应面部属性的检测结果。下表描述了如何调整和计算这些结果。</p>
+<table>
+<thead>
+<tr>
+<th>检测结果 (DetectionResult)</th>
+<th>描述 (Description)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Yes (是)</td>
+<td>我们非常确定该属性为真，你可以基于此结果采取决定性操作。</td>
+</tr>
+<tr>
+<td>No (否)</td>
+<td>我们非常确定该属性为假，你可以基于此结果采取决定性操作。</td>
+</tr>
+<tr>
+<td>Maybe (可能)</td>
+<td>我们相当确定该属性为真。你可以基于此结果奖励用户或给予正向反馈。对于大多数属性，你可以由此推断相应的动作幅度较小。</td>
+</tr>
+<tr>
+<td>Unknown (未知)</td>
+<td>我们没有足够的信息来做出判断。这通常是因为用户将脸转向远离传感器的方向，而我们也不想给出一个糟糕的结果。</td>
+</tr>
+</tbody></table>
+<h1 id="数据库文件"><a href="#数据库文件" class="headerlink" title="数据库文件"></a>数据库文件</h1><p>每个使用 <code>Microsoft.Kinect.Face.dll</code> 的应用程序<strong>必须</strong>与随同 <code>Microsoft.Kinect.Face.dll</code> 一起发布的 <code>NuiDatabase</code> 文件夹打包在一起。<code>Microsoft.Kinect.Face.dll</code>仅保证与它一同发布的特定 <code>NuiDatabase</code> 文件夹一起正常工作。面部 API 在初始化时会从 <code>NuiDatabase</code> 文件夹中加载数据库文件，并且会在 <code>Microsoft.Kinect.Face.dll</code> 相同的路径下查找该文件夹。</p>
+<h1 id="性能考虑"><a href="#性能考虑" class="headerlink" title="性能考虑"></a>性能考虑</h1><p>如果要在事件处理程序中执行长时间运行的任务（耗时超过单帧到达的时间），则必须在执行任务之前获取所有相关的帧引用。如果未事先获取引用，帧数据可能会被覆盖，获取引用或数据的调用将返回 <code>null</code>。</p>
+<p>通常，最好避免在事件处理程序中执行长时间运行的任务，应使用独立线程来处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" data-id="cmfg949s40006jcus0p9k3oh8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/坐标映射" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.894Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文解释了如何使用坐标映射在 Kinect 的各个坐标空间之间投影数据。</p>
+<ul>
+<li><code>CoordinateMapper</code>类</li>
+<li>摄像机空间</li>
+<li>深度空间</li>
+<li>彩色空间</li>
+</ul>
+<h1 id="CoordinateMapper类"><a href="#CoordinateMapper类" class="headerlink" title="CoordinateMapper类"></a><code>CoordinateMapper</code>类</h1><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758445(v=ieb.10)"><code>CoordinateMapper</code> 类</a>用于执行两项任务：</p>
+<ul>
+<li>将深度数据从 2D 图像空间投影到 3D 摄像机空间，或者从 3D 摄像机空间映射回 2D 图像空间</li>
+<li>在深度图像上的位置与其在彩色图像上的对应位置之间进行映射。</li>
+</ul>
+<h1 id="摄像机空间"><a href="#摄像机空间" class="headerlink" title="摄像机空间"></a>摄像机空间</h1><p>摄像机空间指的是 Kinect 使用的 3D 坐标系。该坐标系定义如下：</p>
+<ul>
+<li>原点 (x&#x3D;0, y&#x3D;0, z&#x3D;0) 位于 Kinect 红外传感器的中心</li>
+<li>X 轴向传感器的左侧延伸</li>
+<li>Y 轴向上延伸（注意：此方向基于传感器的倾斜角度）</li>
+<li>Z 轴向传感器正前方延伸</li>
+<li>1 个单位 &#x3D; 1 米</li>
+</ul>
+<p>图 1. 相机空间坐标系<br>![[图1.相机空间坐标系.png]]</p>
+<p>请注意，这是一个 “右手”坐标系，与计算机图形学中定义摄像机空间（也称为视图空间）的方式类似。</p>
+<p>任何在 3D 空间中运行的 Kinect 追踪算法（例如骨骼追踪）都将其结果存储在摄像机空间中。在某些情况下，你可能想要将这些点中的某一个投影到深度图像上的行&#x2F;列位置上，以进行进一步处理。在这种情况下，你就需要执行从摄像机空间到深度空间的映射。</p>
+<h1 id="深度空间"><a href="#深度空间" class="headerlink" title="深度空间"></a>深度空间</h1><p>深度空间是一个用于描述深度图像上的二维位置的术语，可以将其视为一个像素的行&#x2F;列位置，其中 x 是列，y 是行。因此，(x&#x3D;0, y&#x3D;0 )对应图像的左上角，而 (x&#x3D;511, y&#x3D;423) 对应图像的右下角（假设图像大小为 512×424）。在某些情况下，映射出深度空间还需要一个 z 值。对此，只需在相应的行&#x2F;列处对深度图像进行采样，并直接使用该值（单位为毫米）作为 z。</p>
+<p>深度图像上的一个常见操作是生成场景的三维点云。在这种情况下，你需要从深度空间“反投影”到摄像机空间。请注意，对深度图像的每个像素单独调用坐标映射函数的开销非常大，你需要批量处理。可以使用基于数组的函数（例如 <code>MapDepthPointsToCameraSpace</code>），或者获取映射表（<code>GetDepthFrameToCameraSpaceTable</code>）然后自己进行矩阵乘法。</p>
+<p>如果你已知一个深度像素，并希望获取对应的红外值。这个操作很简单，因为深度和红外来自 Kinect 上的同一个传感器。只需在红外图像上对相同的行&#x2F;列进行采样即可。</p>
+<p>如果你想获取与某个深度像素对应的彩色像素，则需要使用坐标映射器将其位置转换到彩色空间。</p>
+<h1 id="彩色空间"><a href="#彩色空间" class="headerlink" title="彩色空间"></a>彩色空间</h1><p>Kinect 上的彩色传感器与深度&#x2F;红外传感器在位置上有一定偏移，因此，二者看到的场景视图略有不同。如果你想找到某个深度图像像素对应的颜色，就必须把它的位置转换到彩色空间。彩色空间描述了彩色图像上的二维位置，就像深度空间之于深度图像一样。因此，彩色空间中的一个位置是彩色图像上像素的行&#x2F;列位置，其中 (x&#x3D;0, y&#x3D;0 )对应彩色图像的左上角，(x&#x3D;1919, y&#x3D;1079) 对应彩色图像的右下角（假设彩色图像大小为 1920×1080）。</p>
+<p>从深度空间映射到彩色空间是一个常见操作，可以用于那些想要为用户生成二维彩色抠像以进行绿幕抠像或背景去除的应用程序。只需使用人体索引图像来识别哪些深度像素属于用户，然后使用坐标映射器来获取这些像素对应的颜色值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84/" data-id="cmfg949s20004jcuscslb0sxd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/倾斜追踪" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.886Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>倾斜追踪 API 使得将玩家的倾斜（即其身体偏离垂直方向的程度）融入他们的体验成为可能。例如，你可以使用此功能让玩家倾斜身体以绕过障碍物来观察某些东西。返回的数值经过预滤波处理，在稳定性和延迟之间进行了最佳平衡，其封装形式类似于游戏摇杆 (thumbstick) API。</p>
+<p>左右倾斜对应于 X 轴上的移动；前后倾斜对应于 Y 轴上的移动。两个方向的数值范围均在 -1 到 1 之间，其中 1 大致对应 45 度的倾斜角度。</p>
+<p>倾斜值从人体数据帧（body frame）中获取。</p>
+<h1 id="从-BodyFrame-获取-X-和-Y-倾斜数值"><a href="#从-BodyFrame-获取-X-和-Y-倾斜数值" class="headerlink" title="从 BodyFrame 获取 X 和 Y 倾斜数值"></a>从 BodyFrame 获取 X 和 Y 倾斜数值</h1><p>以下代码展示了如何获取身体倾斜的 X 和 Y 值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">IBody^ body = <span class="comment">// Gets the body frame using NUI APIs.</span></span><br><span class="line"></span><br><span class="line">Windows::Foundation::Point leanAmount = body-&gt;Lean;</span><br><span class="line"><span class="type">float</span> x = leanAmount.X;</span><br><span class="line"><span class="type">float</span> y = leanAmount.Y;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(body-&gt;LeanTrackingState == TrackingState::Tracked)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// Do stuff with lean values.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// Use values from previous frame or default values.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h1><p>[[人体追踪]]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" data-id="cmfg949s30005jcusgniudt4r" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/人体追踪" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.880Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn799273(v=ieb.10)">Body tracking | Microsoft Learn</a></p>
+<p>本文讨论如何使用 Kinect 传感器的人体追踪功能。</p>
+<h1 id="人体数据帧"><a href="#人体数据帧" class="headerlink" title="人体数据帧"></a>人体数据帧</h1><p>通过 <code>BodyFrameReader</code> 访问的 人体数据帧（<code>BodyFrame</code>），提供了访问单个人体数据的方法 <code>GetAndRefreshBodyData</code>。此方法接收一个 <code>IVector&lt;Body&gt;</code> 参数，并用当前<code>BodyFrame</code>的值更新其中的 <code>Body</code> 实例。如果传入的 <code>IVector</code> 为 <code>null</code>，则该参数将被填充为一个新创建的 <code>Body</code> 对象。输入的向量大小必须为 <code>BodyFrameSource::BodyCount</code>。</p>
+<p>此模式实现了零分配（zero-allocation）获取 <code>Body</code> 对象，同时允许未来对类进行扩展而不会破坏现有代码。</p>
+<p>以下代码示例展示了如何打开传感器、订阅 <code>BodyFrameArrived</code> 事件，并用当前的人体数据填充 bodies 向量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::InitKinect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  KinectSensor^ sensor = KinectSensor::<span class="built_in">GetDefault</span>();</span><br><span class="line">  sensor-&gt;<span class="built_in">Open</span>();</span><br><span class="line">  bodyReader = sensor-&gt;BodyFrameSource-&gt;<span class="built_in">OpenReader</span>();</span><br><span class="line">  bodyReader-&gt;FrameArrived += </span><br><span class="line">   ref <span class="keyword">new</span> <span class="built_in">TypedEventHandler</span>&lt;<span class="keyword">typename</span> BodyFrameArrivedEventArgs^&gt; (<span class="keyword">this</span>,                 </span><br><span class="line">                        &amp;MainPage::OnBodyFrameArrived);</span><br><span class="line">  bodies = ref <span class="keyword">new</span> Platform::Collections::<span class="built_in">Vector</span>&lt;Body^&gt;(<span class="number">6</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::OnBodyFrameArrived</span><span class="params">(BodyFrameReader ^sender, BodyFrameArrivedEventArgs ^eventArgs)</span></span>&#123;</span><br><span class="line">  BodyFrame ^frame = eventArgs-&gt;FrameReference-&gt;<span class="built_in">AcquireFrame</span>();</span><br><span class="line">  <span class="keyword">if</span> (frame != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">      frame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="人体数据"><a href="#人体数据" class="headerlink" title="人体数据"></a>人体数据</h1><p>自然用户界面（NUI）追踪到的身体是镜像显示的，就好像是玩家在照镜子一样。这使得玩家与游戏世界的交互更加自然。例如，要让玩家触摸屏幕右侧的一个物体，应使用其右侧的关节点。</p>
+<ul>
+<li><code>JointType::HandRight</code>（右手关节）</li>
+<li><code>JointType::HandTipRight</code>（右手指尖关节）</li>
+<li><code>JointType::ThumbRight</code>（右手拇指关节）</li>
+</ul>
+<h1 id="关节法线"><a href="#关节法线" class="headerlink" title="关节法线"></a>关节法线</h1><p>每个身体关节都有一个用于描述旋转的法线（normal）。旋转表示为世界空间中的一个向量，该向量垂直于该关节在层级结构中所连接的骨骼。例如，要确定右肘关节的滚转角度，需要使用其层级中的直接双亲关节（即右肩关节）来确定骨骼所在的平面。</p>
+<h1 id="关节层级"><a href="#关节层级" class="headerlink" title="关节层级"></a>关节层级</h1><p>关节层级从身体中心向四肢延伸，并且从最顶层的关节到最底层的关节依次排列。这些关节之间的连接关系称为骨骼（bones）。例如，右臂（不包含拇指）的骨骼由以下连接组成：</p>
+<ul>
+<li>右手 — 右手指尖</li>
+<li>右腕 — 右手</li>
+<li>右肘 — 右腕</li>
+<li>右肩 — 右肘</li>
+</ul>
+<p>按照惯例，骨骼被描述为<strong>亲子连接</strong>。</p>
+<h1 id="什么是-HandData"><a href="#什么是-HandData" class="headerlink" title="什么是 HandData"></a>什么是 HandData</h1><p><code>HandLeftState</code>和<code>HandRightState</code>属性提供了玩家的双手状态信息。你可以使用这些信息来判断玩家是否正在与游戏世界中的某个对象进行交互。</p>
+<p>返回的手部状态包括：</p>
+<ul>
+<li>Open（张开）</li>
+<li>Closed（握拳）</li>
+<li>Lasso（套索）</li>
+<li>NotTracked（未追踪）</li>
+<li>Unknown（未知）</li>
+</ul>
+<h1 id="使用套索手势"><a href="#使用套索手势" class="headerlink" title="使用套索手势"></a>使用套索手势</h1><p>相较于张开和握拳手势用途的直观，套索手势显得复杂一些。套索手势是指：手握拳，同时竖起食指和中指。这是一个类似指向的手势，但需要食指和中指两根手指；也类似于一个两指并拢的剪刀手。如果手足够大且靠近摄像头，只竖起一根手指也有可能被识别为套索。要求使用两根手指是为了在深度数据上形成足够大的特征以便系统能够识别。</p>
+<p>套索状态没有严格的使用规则。它可以被应用在如下手势机制中：</p>
+<ul>
+<li>用圆形圈出选择区域</li>
+<li>激活某个区域，比如屏幕上的某个对象</li>
+<li>在屏幕上绘画</li>
+<li>旋转屏幕对象（例如，在角色创建过程中旋转玩家的虚拟角色）</li>
+</ul>
+<p>其应用方式多种多样，具体取决于游戏设计和预期的玩家体验。</p>
+<h1 id="表情、行为与外观"><a href="#表情、行为与外观" class="headerlink" title="表情、行为与外观"></a>表情、行为与外观</h1><p>这部分并非对人体数据的计算，而是为了与 Xbox One 兼容而存在的。如果你希望获取表情、行为或外观信息，请参考[[面部追踪]]。</p>
+<h1 id="交互程度"><a href="#交互程度" class="headerlink" title="交互程度"></a>交互程度</h1><p>在之前的版本中，<code>Body::Engaged</code>属性可以用于判断某个用户与系统的交互程度。该属性现已弃用。请参考[[面部追踪]]来获取此类数据。</p>
+<h1 id="图像与人体数据的空间对齐"><a href="#图像与人体数据的空间对齐" class="headerlink" title="图像与人体数据的空间对齐"></a>图像与人体数据的空间对齐</h1><p>有时你可能需要在不同空间（深度、彩色、摄像机空间）中确定某些点的位置。例如，你想知道玩家的头部在彩色图像中的位置。</p>
+<p>你可以使用<code>CoordinateMapper</code>这个核心工具类，该类可以从<code>KinectSensor</code>实例中获取。以下代码示例展示了如何从彩色空间中获取代表人体头部关节的彩色像素点<code>ColorSpacePoint</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainPage::OnBodyFrameArrived</span><span class="params">(Platform::Object ^sender, </span></span></span><br><span class="line"><span class="params"><span class="function">                                  BodyFrameArrivedEventArgs ^eventArgs)</span></span>&#123;</span><br><span class="line">&#123;</span><br><span class="line">  BodyFrame ^frame = eventArgs-&gt;FrameReference-&gt;<span class="built_in">AcquireFrame</span>();</span><br><span class="line">  <span class="keyword">if</span> (frame != <span class="literal">nullptr</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    frame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">for</span> <span class="title">each</span> <span class="params">(Body ^body in bodies)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      Joint headJoint = body-&gt;Joints-&gt;<span class="built_in">Lookup</span>(JointType::Head);</span><br><span class="line">      CameraSpacePoint headLocation = headJoint.Position;</span><br><span class="line">      TrackingState headTrackingState = headJoint.TrackingState;</span><br><span class="line">        </span><br><span class="line">      CoordinateMapper ^mapper = </span><br><span class="line">        frame-&gt;BodyFrameSource-&gt;KinectSensor-&gt;CoordinateMapper;</span><br><span class="line">      ColorSpacePoint headPoint = mapper-&gt;<span class="built_in">MapCameraPointToColorSpace</span>(headLocation);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="在滤波中使用关节追踪状态"><a href="#在滤波中使用关节追踪状态" class="headerlink" title="在滤波中使用关节追踪状态"></a>在滤波中使用关节追踪状态</h1><p>被推断出的关节因为准确性较低，更有可能包含尖峰噪声。此外，推断关节的随机噪声水平通常也更高。在实际开发 Kinect 游戏时，开发者应将关节的追踪状态视为判断关节数据质量的重要依据，当关节追踪状态为“推断”时，采用更强力的平滑滤波器。这可以通过在滤波器的实现中检查关节追踪状态和基于关节追踪状态自适应地更新滤波器参数来轻松实现。此外，当关节追踪状态为“推断”时，应针对性地采用更擅长去除尖峰噪声的滤波器。</p>
+<p>如果你想了解更多关于关节滤波技术的内容，请阅读文档 Joint Filtering Best Practices 。</p>
+<h1 id="参阅"><a href="#参阅" class="headerlink" title="参阅"></a>参阅</h1><p>[[Kinect for Windows 编程指南]]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/" data-id="cmfg949s10003jcus25pfbljp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/Kinect for Windows 编程指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/Kinect%20for%20Windows%20%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.872Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>欢迎使用 Kinect for Windows 软件开发工具包(SDK)2.0版本。该 SDK 提供了开发基于 Kinect 的 Microsoft Windows 应用程序所需的工具和 API （包括原生代码和托管代码）。开发基于 Kinect 的应用程序本质上与开发其他 Windows 应用程序相同，不同之处在于 Kinect SDK 提供了对 Kinect 特有功能的支持，包括彩色图像、深度图像、音频输入和骨骼数据。</p>
+<p>以下是一些你可以使用本 SDK 支持的功能构建的 Windows 应用程序示例：</p>
+<ul>
+<li>使用骨骼数据来识别和追踪移动中的人</li>
+<li>使用深度数据来确定对象与传感器摄像头之间的距离</li>
+<li>使用噪声和回声消除功能捕获音频，或者查找声源位置</li>
+<li>通过为语音识别引擎编写语法规则，来实现可以语音激活的应用程序</li>
+</ul>
+<h1 id="Kinect-for-Windows-SDK-包含的内容"><a href="#Kinect-for-Windows-SDK-包含的内容" class="headerlink" title="Kinect for Windows SDK 包含的内容"></a>Kinect for Windows SDK 包含的内容</h1><p>该 SDK 包括：</p>
+<ul>
+<li>用于使用 Kinect for Windows 传感器开发 Kinect 应用的驱动程序和技术文档</li>
+<li>用于托管和非托管代码编程的参考 API 和文档。这些 API 能在各种视频模式、CPU 负载和硬件环境下，以最小的软件延迟传递多路媒体数据流</li>
+<li>展示使用 Kinect 传感器的良好实践的示例</li>
+<li>将示例分解为用户任务的示例代码</li>
+</ul>
+<h1 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h1><ul>
+<li>[[倾斜追踪]]<ul>
+<li>演示如何使用倾斜追踪 API</li>
+</ul>
+</li>
+<li>[[人体追踪]]<ul>
+<li>讨论如何使用 Kinect 人体追踪功能</li>
+</ul>
+</li>
+<li>[[面部追踪]]<ul>
+<li>概述 Kinect 面部追踪的编程模型</li>
+</ul>
+</li>
+<li>[[高清面部追踪]]<ul>
+<li>讨论核心的高清面部追踪 API</li>
+</ul>
+</li>
+<li>[[坐标映射]]<ul>
+<li>解释如何使用坐标映射在 Kinect 的各个坐标空间之中投影数据</li>
+</ul>
+</li>
+<li>[[Kinect API 概述]]<ul>
+<li>概述可用于 Kinect for Windows 应用程序的 API</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/Kinect%20for%20Windows%20%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" data-id="cmfg949s00002jcus1jtk0wkm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-编程指南/Kinect API 概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/Kinect%20API%20%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:43:56.865Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文内容</p>
+<ul>
+<li>[[#传感器获取与启动]]</li>
+<li>[[#数据源]]</li>
+<li>[[#数据流]]</li>
+<li>[[#数据流读取器]]</li>
+<li>[[#帧]]</li>
+<li>[[#红外帧]]</li>
+<li>[[#长曝光红外帧]]</li>
+<li>[[#深度帧]]</li>
+<li>[[#人体帧]]</li>
+<li>[[#人体索引帧]]</li>
+<li>[[#色彩帧源]]</li>
+<li>[[#多源帧]]</li>
+<li>[[#音频波束帧]]</li>
+</ul>
+<p>本文提供了可用于开发 Kinect for Windows 应用程序的 API 的高级概述。</p>
+<p>Kinect for Windows SDK 2.0 提供了三套不同的 API 集来创建支持 Kinect 的应用程序：一套 Windows Runtime API (WinRT) 用于开发 Windows Store 应用，一套 .NET API 用于开发 WPT 应用程序，一套原生 API 用于开发需要原生代码性能优势的应用。</p>
+<p>为清晰和易读起见，本主题中链接的 API 均来自 Windows Runtime API 。但所讨论的 API 和编程概念适用于所有三种 API 集。详细的 API 参考文档，请参阅<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn782038(v=ieb.10)">参考</a>。</p>
+<ul>
+<li>视频数据</li>
+<li>音频数据</li>
+</ul>
+<h1 id="视频数据"><a href="#视频数据" class="headerlink" title="视频数据"></a>视频数据</h1><p>来自 Kinect 传感器的视频数据包括低级数据（红外、彩色）以及处理后的数据（深度、人体骨骼）。这些 API 遵循标准的 WinRT 设计指南，支持所有与 WinRT 兼容的语言和 UI 框架。</p>
+<h2 id="传感器获取与启动"><a href="#传感器获取与启动" class="headerlink" title="传感器获取与启动"></a>传感器获取与启动</h2><p>Kinect for Windows 支持一个<strong>默认传感器</strong>。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758761(v=ieb.10)"><code>KinectSensor</code> 类</a>提供静态成员来帮助配置 Kinect 传感器并访问传感器数据。</p>
+<p>关键 API 包括：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791167(v=ieb.10)"><code>KinectSensor.GetDefault</code> 方法    </a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791394(v=ieb.10)"><code>KinectSensor.Open</code> 方法</a></li>
+</ul>
+<p>如果调用进程已调用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791394(v=ieb.10)">Open</a>，则 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758619(v=ieb.10)"><code>KinectSensor.IsOpen</code> 属性</a>将返回 <code>true</code>。</p>
+<p>如果没有可用的 Kinect 传感器，<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758615(v=ieb.10)"><code>KinectSensor.IsAvailable</code> 属性</a>将返回 <code>false</code>。例如，如果用户安装了应用程序，但 PC 未连接 Kinect 传感器，则会返回 <code>false</code>。如果是这种情况，你的应用程序应该提示用户“传感器不可用”。</p>
+<h2 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h2><p>传感器提供多个数据源，包括：彩色、深度、人体、人体索引和红外。在功能上，每个数据源由以下三个部分控制：</p>
+<ul>
+<li><strong>源类型</strong><ul>
+<li>检查或配置数据源，并打开源读取器。</li>
+</ul>
+</li>
+<li><strong>源读取器类型</strong><ul>
+<li>使用事件或轮询获取数据源的帧。</li>
+</ul>
+</li>
+<li><strong>帧类型</strong><ul>
+<li>访问源中特定帧的数据。</li>
+</ul>
+</li>
+</ul>
+<p>关于以上内容在 API 中表示的示例，请参阅以下主题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791146(v=ieb.10)"><code>FrameSourceTypes</code> 枚举</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791105(v=ieb.10)"><code>FrameDescription</code> 类</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758432(v=ieb.10)"><code>ColorImageFormat</code> 枚举</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791378(v=ieb.10)"><code>ColorFrameSource.OpenReader</code> 方法</a></li>
+</ul>
+<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>开发者打开传感器后，就可以使用实例访问各个数据流：彩色、深度、人体、人体索引、红外和长曝光红外。每个数据流都分为三部分：</p>
+<ul>
+<li><strong>流类型</strong><ul>
+<li>用于检查或设置流，并打开流读取器。</li>
+</ul>
+</li>
+<li><strong>流读取器类型</strong><ul>
+<li>通过事件或轮询访问数据流的帧。</li>
+</ul>
+</li>
+<li><strong>帧类型</strong><ul>
+<li>访问流中特定帧的数据。</li>
+</ul>
+</li>
+</ul>
+<p>流类型的任务是让你访问流、允许配置（如果处于独占模式）和打开流读取器。每个流都有自己的类型，但它们都有相同的基本功能。</p>
+<table>
+<thead>
+<tr>
+<th>API 元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791376(v=ieb.10)"><code>BodyIndexFrameSource.OpenReader</code> 方法</a></td>
+<td>打开此流的读取器。如果冲突的流已打开，此操作将失败。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773078(v=ieb.10)"><code>BodyIndexFrameSource.IsActive</code> 属性</a></td>
+<td>指示此流是否有活动的流读取器。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791089(v=ieb.10)"><code>BodyIndexFrameSource.FrameDescription</code> 属性</a></td>
+<td>提供关于输出帧的信息，以便你可以预分配正确大小的缓冲区来存储帧数据。不适用于 <code>BodyFrameStream</code>。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758753(v=ieb.10)"><code>BodyIndexFrameSource.KinectSensor</code> 属性</a></td>
+<td>指向输出此流的传感器的反向指针。</td>
+</tr>
+</tbody></table>
+<h2 id="数据流读取器"><a href="#数据流读取器" class="headerlink" title="数据流读取器"></a>数据流读取器</h2><p>每个数据流都有自己的流读取器类型，但它们都有相同的基本功能。</p>
+<table>
+<thead>
+<tr>
+<th>API 元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772605(v=ieb.10)"><code>BodyFrameReader.AcquireLatestFrame</code> 方法</a></td>
+<td>获取最新帧。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791054(v=ieb.10)"><code>BodyFrameReader.FrameArrived</code> 事件</a></td>
+<td>订阅此事件以便在有新帧可用时收到通知。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758623(v=ieb.10)"><code>BodyFrameReader.IsPaused</code> 属性</a></td>
+<td>控制是否将帧传递给该读取器实例的用户。这对流本身或其他打开的流读取器没有影响。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758367(v=ieb.10)"><code>BodyFrameReader.Close</code> 方法</a></td>
+<td>关闭流读取器。当最后一个打开的流读取器被关闭时，流本身将被禁用。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772756(v=ieb.10)"><code>BodyFrameReader.BodyFrameSource</code> 属性</a></td>
+<td>指向打开此读取器的流的反向指针。</td>
+</tr>
+</tbody></table>
+<h2 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h2><p><strong>帧</strong>包含传感器采集的数据。使用帧对象将帧数据复制到应用程序的缓冲区或访问底层系统缓冲区。每个帧只会临时存储帧数据，应用程序应尽快从每个帧中获取数据并关闭&#x2F;释放它，以释放底层句柄，并确保系统不需要持续分配新内存来存储传入的帧数据。</p>
+<p>每个流都有自己的帧类型，它们都有相同的基本功能；尽管它们有很多共同点，但这些帧类型在不同的流之间的差异也非常大。</p>
+<table>
+<thead>
+<tr>
+<th>API 元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.depthframe.copyframedatatoarray(system.uint16%5b%5d%40)(v=IEB.10)"><code>DepthFrame.CopyFrameDataToArray</code> 方法</a></td>
+<td>将帧的像素数据复制到应用程序提供的基于数组的缓冲区中。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.depthframe.copyframedatatobuffer(windows.storage.streams.ibuffer)(v=IEB.10)"><code>DepthFrame.CopyFrameDataToBuffer</code> 方法</a></td>
+<td>将帧的像素数据复制到应用程序提供的 <code>IBuffer</code> 中。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758787(v=ieb.10)"><code>DepthFrame.LockImageBuffer</code> 方法</a></td>
+<td>让应用程序访问系统用于存储此帧数据的底层缓冲区。长时间保持此缓冲区活动将导致系统持续为输入流分配新缓冲区。 无法尝试写入此缓冲区。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758375(v=ieb.10)"><code>DepthFrame.Close</code> 方法</a></td>
+<td>释放底层系统缓冲区的句柄。调用此方法后，所有其他操作都将失败。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758531(v=ieb.10)"><code>DepthFrame.DepthFrameSource</code> 属性</a></td>
+<td>指向提供此帧的流读取器的反向指针。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791099(v=ieb.10)"><code>DepthFrame.FrameDescription</code> 属性</a></td>
+<td>提供应用程序需要了解的关于为此帧分配缓冲区的信息。不适用于 <code>BodyFrame</code>。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791522(v=ieb.10)"><code>DepthFrame.RelativeTime</code> 属性</a></td>
+<td>提供一个 <strong>时间戳（<code>UInt64</code>）</strong>，表示此帧的创建时间。此值不允许使用绝对的现实世界创建时间，但允许获取帧之间的相对交付时间（来自给定 Kinect 传感器的帧内和帧间），单位为毫秒。</td>
+</tr>
+</tbody></table>
+<h2 id="红外帧"><a href="#红外帧" class="headerlink" title="红外帧"></a>红外帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>提供类似黑白照片的场景视图，但它是主动发光的，因此亮度不受位置和环境亮度的影响。红外帧非常适合依赖纹理信息的计算机视觉算法，例如面部识别。数据存储为 16 位无符号整数。红外帧也非常适合绿幕抠像、跟踪反光标记和滤除低返回的深度像素（这是造成抖动的原因）。请注意，红外帧与深度来自同一个传感器，因此图像完美对齐。例如，第 5 行第 9 列的红外像素与第 5 行第 9 列的深度像素相对应。</p>
+<h2 id="长曝光红外帧"><a href="#长曝光红外帧" class="headerlink" title="长曝光红外帧"></a>长曝光红外帧</h2><p>此帧类似于 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>，但它的曝光时间更长，图像质量更高质、噪声更少，但代价是运动中的物体会产生一些运动模糊。</p>
+<h2 id="深度帧"><a href="#深度帧" class="headerlink" title="深度帧"></a>深度帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758543(v=ieb.10)"><code>DepthFrame</code> 类</a>表示一种帧，其中每个像素代表该像素看到的最近物体的距离。此帧的数据存储为 16 位无符号整数，每个值代表以毫米为单位的距离。最大深度距离为 8 米，但可靠性在 4.5 米左右就开始下降。在 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>不足以满足需求时，开发者可以使用深度帧来构建自定义跟踪算法。</p>
+<h2 id="人体帧"><a href="#人体帧" class="headerlink" title="人体帧"></a>人体帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>包含传感器视图中所有人计算出的所有实时跟踪信息，包括骨骼关节点和方向、手部状态等，最多可同时跟踪 6 人。这些跟踪功能为在应用程序中实现人机交互提供了良好的基础。要从 <code>BodyFrame</code> 中提取此跟踪数据，请分配一个包含 6 个 body 指针的向量，并将其传递给 <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.bodyframe.getandrefreshbodydata(windows.foundation.collections.ivector%7bwindowspreview.kinect.body%7d)(v=IEB.10)"><code>BodyFrame.GetAndRefreshBodyData</code> 方法</a>。数组中的每个 body 代表可以同时跟踪的 6 个可能的 body 中每一个的跟踪信息。每个代表传感器视野中真实用户的 body 将被标记为“已跟踪”。</p>
+<p>要访问 body 列表，首先在启动时分配一个向量，如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> bodies = ref <span class="keyword">new</span> Platform::Collections::<span class="built_in">Vector</span>&lt;Body^&gt;(<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+
+<p>然后，对于每一帧，像这样更新向量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bodyFrame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);</span><br></pre></td></tr></table></figure>
+
+<h2 id="人体索引帧"><a href="#人体索引帧" class="headerlink" title="人体索引帧"></a>人体索引帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772813(v=ieb.10)"><code>BodyIndexFrame</code> 类</a>表示基于深度图像计算出的帧。此图像表示哪些深度或红外像素属于被跟踪的人，哪些属于背景。此帧中的像素值是 8 位无符号整数，其中 0-5 直接映射到 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>中的 <code>BodyData</code> 索引。其余从 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772730(v=ieb.10)"><code>BodyFrameSource.BodyCount</code> 属性</a>获得的值表示该像素是背景的一部分，与跟踪的 body 无关。此帧对于绿幕应用程序或任何想要显示用户轮廓的场景非常有用。它也为自定义深度算法提供了良好的起始边界。</p>
+<h2 id="色彩帧源"><a href="#色彩帧源" class="headerlink" title="色彩帧源"></a>色彩帧源</h2><p>由于需要在流上设置一些选项，彩色帧源扩展了深度流中定义的模式。使用此源可以获取转换为所需彩色图像格式（如 RGB 或 YUV）的图像帧数据副本。无论格式如何，像素类型都将是 <code>UInt8</code>（字节）。有不同的格式的 <code>CopyRaw</code> 和 <code>LockRaw</code> 访问器，以及新的 <code>CopyConverted</code> 访问器，它们将原始图像转换为提供缓冲区中的指定格式。</p>
+<table>
+<thead>
+<tr>
+<th>API 元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframesource.createframedescription(windowspreview.kinect.colorimageformat)(v=IEB.10)"><code>ColorFrameSource.CreateFrameDescription</code> 方法</a></td>
+<td>创建描述具有所提供格式和分辨率的彩色帧的 <code>FrameDescription</code> 对象。这取代了在其他图像流上找到的 <code>FrameDescription</code> 属性。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791378(v=ieb.10)"><code>ColorFrameSource.OpenReader</code> 方法</a></td>
+<td>打开一个新的流读取器。此读取器必须被释放。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframe.copyconvertedframedatatoarray(system.byte%5b%5d%40%2cwindowspreview.kinect.colorimageformat)(v=IEB.10)"><code>ColorFrame.CopyConvertedFrameDataToArray</code> 方法</a></td>
+<td>将原始格式转换为请求的格式并将数据复制到提供的数组中。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframe.copyconvertedframedatatobuffer(windows.storage.streams.ibuffer%2cwindowspreview.kinect.colorimageformat)(v=IEB.10)"><code>ColorFrame.CopyConvertedFrameDataToBuffer</code> 方法</a></td>
+<td>用转换为指定格式的图像版本填充提供的缓冲区。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframe.copyrawframedatatoarray(system.byte%5b%5d%40)(v=IEB.10)"><code>ColorFrame.CopyRawFrameDataToArray</code> 方法</a></td>
+<td>将原始帧数据复制到提供的数组中。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.colorframe.copyrawframedatatobuffer(windows.storage.streams.ibuffer)(v=IEB.10)"><code>ColorFrame.CopyRawFrameDataToBuffer</code> 方法</a></td>
+<td>将原始帧数据复制到提供的缓冲区中。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791493(v=ieb.10)"><code>ColorFrame.RawColorImageFormat</code> 属性</a></td>
+<td>返回原始像素的颜色格式。</td>
+</tr>
+</tbody></table>
+<h2 id="多源帧"><a href="#多源帧" class="headerlink" title="多源帧"></a>多源帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791350(v=ieb.10)"><code>MultiSourceFrame</code> 类</a>通过单个接口提供对多种帧类型的访问。通过以下属性获取对各个帧类型的引用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772754(v=ieb.10)"><code>MultiSourceFrame.BodyFrameReference</code> 属性</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772797(v=ieb.10)"><code>MultiSourceFrame.BodyIndexFrameReference</code> 属性</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758410(v=ieb.10)"><code>MultiSourceFrame.ColorFrameReference</code> 属性</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758527(v=ieb.10)"><code>MultiSourceFrame.DepthFrameReference</code> 属性</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773051(v=ieb.10)"><code>MultiSourceFrame.InfraredFrameReference</code> 属性</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758815(v=ieb.10)"><code>MultiSourceFrame.LongExposureInfraredFrameReference</code> 属性</a></li>
+</ul>
+<h1 id="音频数据"><a href="#音频数据" class="headerlink" title="音频数据"></a>音频数据</h1><h2 id="音频波束帧"><a href="#音频波束帧" class="headerlink" title="音频波束帧"></a>音频波束帧</h2><p>音频数据从麦克风阵列收集，并处理成波束，以强调声源方向。波束可以设置为自动跟踪声源或瞄准特定方向。波束的声音数据被划分为帧，每帧大致对应于每个视频帧。声音帧又细分为约 16 毫秒长的子帧。</p>
+<p>用于从 Kinect 传感器获取音频数据的 WinRT API 在 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758774(v=ieb.10)"><code>WindowsPreview.Kinect</code> 命名空间</a>下的参考中有描述。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/Kinect%20API%20%E6%A6%82%E8%BF%B0/" data-id="cmfg949rx0001jcus5m436z6q" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/12/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2025-09-12T02:06:42.684Z" itemprop="datePublished">2025-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/09/12/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/12/hello-world/" data-id="cmfg949rq0000jcus0ih22vle" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%AB%98%E6%B8%85%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E4%BA%BA%E4%BD%93%E8%BF%BD%E8%B8%AA/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
