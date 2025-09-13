@@ -1294,67 +1294,6 @@ html[theme=dark] pre .hljs-punctuation,
 html[theme=dark] pre .hljs-tag {
   /* purposely ignored */
   color: #c9d1d9;
-}i.fa {
-  font-size: 80%;
-  color: var(--primary-low-mid);
-}
-
-body {
-  margin: auto;
-  max-width: 780px;
-}
-
-.post-container .post-meta {
-  font-size: 0.9em;
-}
-.post-container.post-full .post-meta {
-  margin-top: 1em;
-}
-.post-container.post-excerpt, .post-container.index-post {
-  margin-bottom: 3em;
-}
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-}
-
-a.header-anchor {
-  opacity: 0.5;
-  font-size: 80%;
-}
-
-@media print {
-  html {
-    font-size: 12px;
-  }
-  .comment-container,
-  .pagination,
-  footer .powered_by {
-    display: none;
-  }
-  .header-anchor {
-    display: none;
-  }
-  pre > code {
-    border-top: 1px solid var(--primary-300);
-    border-bottom: 1px solid var(--primary-300);
-  }
-}
-@page {
-  margin: 20mm;
-  @bottom-center {
-    content: counter(page);
-    font-size: 12px;
-    font-family: var(--normal-font-face);
-  }
-}
-@page :first {
-  @top-left {
-    content: var(--page-url);
-    font-size: 12px;
-    font-family: var(--normal-font-face);
-  }
 }.gt-container {
   box-sizing: border-box;
   font-size: 16px;
@@ -1702,6 +1641,67 @@ a.header-anchor {
   }
   100% {
     transform: rotate(360deg);
+  }
+}i.fa {
+  font-size: 80%;
+  color: var(--primary-low-mid);
+}
+
+body {
+  margin: auto;
+  max-width: 780px;
+}
+
+.post-container .post-meta {
+  font-size: 0.9em;
+}
+.post-container.post-full .post-meta {
+  margin-top: 1em;
+}
+.post-container.post-excerpt, .post-container.index-post {
+  margin-bottom: 3em;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+a.header-anchor {
+  opacity: 0.5;
+  font-size: 80%;
+}
+
+@media print {
+  html {
+    font-size: 12px;
+  }
+  .comment-container,
+  .pagination,
+  footer .powered_by {
+    display: none;
+  }
+  .header-anchor {
+    display: none;
+  }
+  pre > code {
+    border-top: 1px solid var(--primary-300);
+    border-bottom: 1px solid var(--primary-300);
+  }
+}
+@page {
+  margin: 20mm;
+  @bottom-center {
+    content: counter(page);
+    font-size: 12px;
+    font-family: var(--normal-font-face);
+  }
+}
+@page :first {
+  @top-left {
+    content: var(--page-url);
+    font-size: 12px;
+    font-family: var(--normal-font-face);
   }
 }.searchbox input.ins-search-input {
   color: var(--primary);

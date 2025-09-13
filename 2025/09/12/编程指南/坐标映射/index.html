@@ -29,7 +29,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li>Z 轴向传感器正前方延伸</li>
 <li>1 个单位 &#x3D; 1 米</li>
 </ul>
-<p>图 1. 相机空间坐标系<br><img src="/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84/%E7%9B%B8%E6%9C%BA%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E7%B3%BB.png" alt="相机空间坐标系"></p>
+<p>图 1. 摄像机空间坐标系<br><img src="/%E5%9D%90%E6%A0%87%E6%98%A0%E5%B0%84%5C%E6%91%84%E5%83%8F%E6%9C%BA%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E7%B3%BB.png" alt="摄像机空间坐标系"></p>
 <p>请注意，这是一个 “右手”坐标系，与计算机图形学中定义摄像机空间（也称为视图空间）的方式类似。</p>
 <p>任何在 3D 空间中运行的 Kinect 追踪算法（例如骨骼追踪）都将其结果存储在摄像机空间中。在某些情况下，你可能想要将这些点中的某一个投影到深度图像上的行&#x2F;列位置上，以进行进一步处理。在这种情况下，你就需要执行从摄像机空间到深度空间的映射。</p>
 <h1 id="深度空间"><a href="#深度空间" class="headerlink" title="深度空间"></a>深度空间</h1><p>深度空间是一个用于描述深度图像上的二维位置的术语，可以将其视为一个像素的行&#x2F;列位置，其中 x 是列，y 是行。因此，(x&#x3D;0, y&#x3D;0 )对应图像的左上角，而 (x&#x3D;511, y&#x3D;423) 对应图像的右下角（假设图像大小为 512×424）。在某些情况下，映射出深度空间还需要一个 z 值。对此，只需在相应的行&#x2F;列处对深度图像进行采样，并直接使用该值（单位为毫米）作为 z。</p>
@@ -38,4 +38,4 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <p>如果你想获取与某个深度像素对应的彩色像素，则需要使用坐标映射器将其位置转换到彩色空间。</p>
 <h1 id="彩色空间"><a href="#彩色空间" class="headerlink" title="彩色空间"></a>彩色空间</h1><p>Kinect 上的彩色传感器与深度&#x2F;红外传感器在位置上有一定偏移，因此，二者看到的场景视图略有不同。如果你想找到某个深度图像像素对应的颜色，就必须把它的位置转换到彩色空间。彩色空间描述了彩色图像上的二维位置，就像深度空间之于深度图像一样。因此，彩色空间中的一个位置是彩色图像上像素的行&#x2F;列位置，其中 (x&#x3D;0, y&#x3D;0 )对应彩色图像的左上角，(x&#x3D;1919, y&#x3D;1079) 对应彩色图像的右下角（假设彩色图像大小为 1920×1080）。</p>
 <p>从深度空间映射到彩色空间是一个常见操作，可以用于那些想要为用户生成二维彩色抠像以进行绿幕抠像或背景去除的应用程序。只需使用人体索引图像来识别哪些深度像素属于用户，然后使用坐标映射器来获取这些像素对应的颜色值。</p>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">Previous</a><span>  </span><a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" title="倾斜追踪">Next</a></p></main><footer class="footer"><br></footer></body></html>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">Post Anterior</a><span>  </span><a href="/2025/09/12/%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" title="倾斜追踪">Próximo post</a></p></main><footer class="footer"><br></footer></body></html>
