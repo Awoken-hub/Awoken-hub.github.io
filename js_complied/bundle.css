@@ -1,158 +1,4 @@
-aside.language-name {
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  color: #ccc !important;
-  text-align: right !important;
-  font-size: 0.75em !important;
-  padding: 5px 10px 0 !important;
-  line-height: 15px !important;
-  height: 15px !important;
-  font-weight: 600 !important;
-  user-select: none;
-}
-
-figure.highlight {
-  position: relative !important;
-  margin: 1em 0 !important;
-  border-radius: 2px !important;
-  line-height: 1.1em !important;
-  background-color: var(--secondary-950) !important;
-  overflow-x: auto !important;
-  padding-left: 1em;
-}
-figure.highlight figcaption {
-  padding: 5px 10px 0 0;
-  font-size: 0.8em;
-  line-height: 1em;
-  font-family: var(--mono-font-face);
-  opacity: 0.7;
-}
-figure.highlight table,
-figure.highlight tr,
-figure.highlight td {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-}
-figure.highlight .gutter {
-  width: fit-content !important;
-  line-height: 1.5em !important;
-  font-size: 15px;
-  padding: 0em 1em 0em 0em !important;
-  user-select: none;
-}
-figure.highlight .gutter pre {
-  color: rgb(212, 148, 75) !important;
-}
-body.disable-line-number figure.highlight .gutter {
-  display: none;
-}
-figure.highlight .code pre {
-  padding: 1.2em 1em 1.2em 0 !important;
-  line-height: 1.5em !important;
-  margin: 0 !important;
-}
-
-pre code.hljs {
-  display: block;
-  position: relative !important;
-  margin: 1em 0 !important;
-  border-radius: 2px !important;
-  line-height: 1.5em !important;
-  background-color: var(--secondary-950) !important;
-  overflow-x: auto !important;
-  padding: 1em 1em 1em 1em !important;
-  line-height: 1.5em !important;
-  margin: 0 !important;
-}
-
-pre code {
-  background-color: transparent;
-}
-pre .function .keyword,
-pre .constant {
-  color: #0092db !important;
-}
-pre .keyword,
-pre .attribute {
-  color: #e96900 !important;
-}
-pre .number,
-pre .literal {
-  color: #ae81ff !important;
-}
-pre .tag,
-pre .tag .title,
-pre .change,
-pre .winutils,
-pre .flow,
-pre .lisp .title,
-pre .clojure .built_in,
-pre .nginx .title,
-pre .tex .special {
-  color: #2973b7 !important;
-}
-pre .symbol,
-pre .symbol .string,
-pre .value,
-pre .regexp {
-  color: #42b983 !important;
-}
-pre .title {
-  color: #83b917 !important;
-}
-pre .tag .value,
-pre .string,
-pre .subst,
-pre .haskell .type,
-pre .preprocessor,
-pre .ruby .class .parent,
-pre .built_in,
-pre .sql .aggregate,
-pre .django .template_tag,
-pre .django .variable,
-pre .smalltalk .class,
-pre .javadoc,
-pre .django .filter .argument,
-pre .smalltalk .localvars,
-pre .smalltalk .array,
-pre .attr_selector,
-pre .pseudo,
-pre .addition,
-pre .stream,
-pre .envvar,
-pre .apache .tag,
-pre .apache .cbracket,
-pre .tex .command,
-pre .prompt {
-  color: #42b983 !important;
-}
-pre .comment,
-pre .java .annotation,
-pre .python .decorator,
-pre .template_comment,
-pre .pi,
-pre .doctype,
-pre .shebang,
-pre .apache .sqbracket,
-pre .tex .formula {
-  color: #b3b3b3 !important;
-}
-pre .deletion {
-  color: #ba4545 !important;
-}
-pre .coffeescript .javascript,
-pre .javascript .xml,
-pre .tex .formula,
-pre .xml .javascript,
-pre .xml .vbscript,
-pre .xml .css,
-pre .xml .cdata {
-  opacity: 0.5 !important;
-}html {
+html {
   --primary-rgb: 22, 22, 22;
   --primary: rgb(22, 22, 22);
   --primary-50: #f3f3f3;
@@ -475,67 +321,6 @@ html[theme=light] {
   --tertiary-low-mid: #9fa9eb;
   --tertiary-low: #d8dcf7;
   --tertiary-very-low: white;
-}i.fa {
-  font-size: 80%;
-  color: var(--primary-low-mid);
-}
-
-body {
-  margin: auto;
-  max-width: 780px;
-}
-
-.post-container .post-meta {
-  font-size: 0.9em;
-}
-.post-container.post-full .post-meta {
-  margin-top: 1em;
-}
-.post-container.post-excerpt, .post-container.index-post {
-  margin-bottom: 3em;
-}
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-}
-
-a.header-anchor {
-  opacity: 0.5;
-  font-size: 80%;
-}
-
-@media print {
-  html {
-    font-size: 12px;
-  }
-  .comment-container,
-  .pagination,
-  footer .powered_by {
-    display: none;
-  }
-  .header-anchor {
-    display: none;
-  }
-  pre > code {
-    border-top: 1px solid var(--primary-300);
-    border-bottom: 1px solid var(--primary-300);
-  }
-}
-@page {
-  margin: 20mm;
-  @bottom-center {
-    content: counter(page);
-    font-size: 12px;
-    font-family: var(--normal-font-face);
-  }
-}
-@page :first {
-  @top-left {
-    content: var(--page-url);
-    font-size: 12px;
-    font-family: var(--normal-font-face);
-  }
 }html {
   --primary-rgb: 22, 22, 22;
   --primary: rgb(22, 22, 22);
@@ -1010,6 +795,160 @@ textarea {
   font-family: inherit;
   font-size: 1em;
   padding: 7px;
+}aside.language-name {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  color: #ccc !important;
+  text-align: right !important;
+  font-size: 0.75em !important;
+  padding: 5px 10px 0 !important;
+  line-height: 15px !important;
+  height: 15px !important;
+  font-weight: 600 !important;
+  user-select: none;
+}
+
+figure.highlight {
+  position: relative !important;
+  margin: 1em 0 !important;
+  border-radius: 2px !important;
+  line-height: 1.1em !important;
+  background-color: var(--secondary-950) !important;
+  overflow-x: auto !important;
+  padding-left: 1em;
+}
+figure.highlight figcaption {
+  padding: 5px 10px 0 0;
+  font-size: 0.8em;
+  line-height: 1em;
+  font-family: var(--mono-font-face);
+  opacity: 0.7;
+}
+figure.highlight table,
+figure.highlight tr,
+figure.highlight td {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+figure.highlight .gutter {
+  width: fit-content !important;
+  line-height: 1.5em !important;
+  font-size: 15px;
+  padding: 0em 1em 0em 0em !important;
+  user-select: none;
+}
+figure.highlight .gutter pre {
+  color: rgb(212, 148, 75) !important;
+}
+body.disable-line-number figure.highlight .gutter {
+  display: none;
+}
+figure.highlight .code pre {
+  padding: 1.2em 1em 1.2em 0 !important;
+  line-height: 1.5em !important;
+  margin: 0 !important;
+}
+
+pre code.hljs {
+  display: block;
+  position: relative !important;
+  margin: 1em 0 !important;
+  border-radius: 2px !important;
+  line-height: 1.5em !important;
+  background-color: var(--secondary-950) !important;
+  overflow-x: auto !important;
+  padding: 1em 1em 1em 1em !important;
+  line-height: 1.5em !important;
+  margin: 0 !important;
+}
+
+pre code {
+  background-color: transparent;
+}
+pre .function .keyword,
+pre .constant {
+  color: #0092db !important;
+}
+pre .keyword,
+pre .attribute {
+  color: #e96900 !important;
+}
+pre .number,
+pre .literal {
+  color: #ae81ff !important;
+}
+pre .tag,
+pre .tag .title,
+pre .change,
+pre .winutils,
+pre .flow,
+pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title,
+pre .tex .special {
+  color: #2973b7 !important;
+}
+pre .symbol,
+pre .symbol .string,
+pre .value,
+pre .regexp {
+  color: #42b983 !important;
+}
+pre .title {
+  color: #83b917 !important;
+}
+pre .tag .value,
+pre .string,
+pre .subst,
+pre .haskell .type,
+pre .preprocessor,
+pre .ruby .class .parent,
+pre .built_in,
+pre .sql .aggregate,
+pre .django .template_tag,
+pre .django .variable,
+pre .smalltalk .class,
+pre .javadoc,
+pre .django .filter .argument,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .attr_selector,
+pre .pseudo,
+pre .addition,
+pre .stream,
+pre .envvar,
+pre .apache .tag,
+pre .apache .cbracket,
+pre .tex .command,
+pre .prompt {
+  color: #42b983 !important;
+}
+pre .comment,
+pre .java .annotation,
+pre .python .decorator,
+pre .template_comment,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .apache .sqbracket,
+pre .tex .formula {
+  color: #b3b3b3 !important;
+}
+pre .deletion {
+  color: #ba4545 !important;
+}
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+  opacity: 0.5 !important;
 }pre,
 html[theme=light] pre {
   color: #24292e;
@@ -1355,6 +1294,67 @@ html[theme=dark] pre .hljs-punctuation,
 html[theme=dark] pre .hljs-tag {
   /* purposely ignored */
   color: #c9d1d9;
+}i.fa {
+  font-size: 80%;
+  color: var(--primary-low-mid);
+}
+
+body {
+  margin: auto;
+  max-width: 780px;
+}
+
+.post-container .post-meta {
+  font-size: 0.9em;
+}
+.post-container.post-full .post-meta {
+  margin-top: 1em;
+}
+.post-container.post-excerpt, .post-container.index-post {
+  margin-bottom: 3em;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+a.header-anchor {
+  opacity: 0.5;
+  font-size: 80%;
+}
+
+@media print {
+  html {
+    font-size: 12px;
+  }
+  .comment-container,
+  .pagination,
+  footer .powered_by {
+    display: none;
+  }
+  .header-anchor {
+    display: none;
+  }
+  pre > code {
+    border-top: 1px solid var(--primary-300);
+    border-bottom: 1px solid var(--primary-300);
+  }
+}
+@page {
+  margin: 20mm;
+  @bottom-center {
+    content: counter(page);
+    font-size: 12px;
+    font-family: var(--normal-font-face);
+  }
+}
+@page :first {
+  @top-left {
+    content: var(--page-url);
+    font-size: 12px;
+    font-family: var(--normal-font-face);
+  }
 }.gt-container {
   box-sizing: border-box;
   font-size: 16px;
