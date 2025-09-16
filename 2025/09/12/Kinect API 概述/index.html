@@ -1,37 +1,8 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>Kinect API 概述 · 不眠觉的个人博客</title><meta name="description" content="本文内容
-
-[[#传感器获取与启动]]
-[[#数据源]]
-[[#数据流]]
-[[#数据流读取器]]
-[[#帧]]
-[[#红外帧]]
-[[#长曝光红外帧]]
-[[#深度帧]]
-[[#人体帧]]
-[[#人体索引帧]]
-[[#色彩帧源]]
-[[#多源帧]]
-[[#音频波束帧]]
-
-本文提供了可用于开发 K"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>Kinect API 概述 · 不眠觉的个人博客</title><meta name="description" content="原文
+本文提供了可用于开发 Kinect for Windows 应用程序的 API 的高级概述。
+Kinect for Windows SDK 2.0 提供了三套不同的 API 集来创建支持 Kinect 的应用程序：一套 Windows Runtime API (WinRT) 用于开发 Wind"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
-Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>Kinect API 概述</h1></header><section class="post-body"><p>本文内容</p>
-<ul>
-<li>[[#传感器获取与启动]]</li>
-<li>[[#数据源]]</li>
-<li>[[#数据流]]</li>
-<li>[[#数据流读取器]]</li>
-<li>[[#帧]]</li>
-<li>[[#红外帧]]</li>
-<li>[[#长曝光红外帧]]</li>
-<li>[[#深度帧]]</li>
-<li>[[#人体帧]]</li>
-<li>[[#人体索引帧]]</li>
-<li>[[#色彩帧源]]</li>
-<li>[[#多源帧]]</li>
-<li>[[#音频波束帧]]</li>
-</ul>
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>Kinect API 概述</h1></header><section class="post-body"><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn782033(v=ieb.10)">原文</a></p>
 <p>本文提供了可用于开发 Kinect for Windows 应用程序的 API 的高级概述。</p>
 <p>Kinect for Windows SDK 2.0 提供了三套不同的 API 集来创建支持 Kinect 的应用程序：一套 Windows Runtime API (WinRT) 用于开发 Windows Store 应用，一套 .NET API 用于开发 WPT 应用程序，一套原生 API 用于开发需要原生代码性能优势的应用。</p>
 <p>为清晰和易读起见，本主题中链接的 API 均来自 Windows Runtime API 。但所讨论的 API 和编程概念适用于所有三种 API 集。详细的 API 参考文档，请参阅<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn782038(v=ieb.10)">参考</a>。</p>
