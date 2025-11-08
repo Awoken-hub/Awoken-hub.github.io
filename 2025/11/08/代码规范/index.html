@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>代码规范 · 不眠觉的个人博客</title><meta name="description" content="参考：ACM Class Wiki_CodeStyle
+缩进缩进
+使用2个空格进行缩进，不要使用Tab键。虽然可以使用其他宽度，但需要保持一致性。
+
+运算符
+一元运算符：不添加额外的空格
+123x = -a;y = *b;z = &amp;amp;c;
+
+二元运算符和三元运算符：运算符前后应有空格，例如 x"><meta name="keywords" content="代码规范"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>代码规范</h1></header><section class="post-body"><p>参考：<a target="_blank" rel="noopener" href="https://acm.sjtu.edu.cn/wiki/%E6%96%87%E4%BB%B6:CodeStyle(2025).pdf">ACM Class Wiki_CodeStyle</a></p>
+<h1 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h1><h2 id="缩进-1"><a href="#缩进-1" class="headerlink" title="缩进"></a>缩进</h2><ul>
+<li>使用2个空格进行缩进，不要使用Tab键。虽然可以使用其他宽度，但需要保持一致性。</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ul>
+<li><p><strong>一元运算符</strong>：不添加额外的空格</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = -a;</span><br><span class="line">y = *b;</span><br><span class="line">z = &amp;c;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>二元运算符和三元运算符</strong>：运算符前后应有空格，例如 <code>x = a + b * c / d;</code>。</p>
+</li>
+<li><p><strong>括号</strong>：左括号后和右括号前不要有空格，建议对优先级复杂的表达式加上括号以提高可读性。</p>
+</li>
+<li><p><strong>指针声明</strong>：推荐将指针符号（<code>*</code> 或 <code>&amp;</code>）放在变量名的右侧。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *x; <span class="comment">// Correct </span></span><br><span class="line"><span class="type">int</span>* x; <span class="comment">// Correct, but not suggested </span></span><br><span class="line"><span class="type">int</span>* x, *y; <span class="comment">// Wrong </span></span><br><span class="line"><span class="type">int</span> *x, *y; <span class="comment">// Correct, suggested</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>推荐这样使用是为了避免误解<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *x, y; <span class="comment">// Only x is a pointer </span></span><br><span class="line"><span class="type">int</span>* x, y; <span class="comment">// This may confuse you a little bit.</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><ul>
+<li>可以选择是否在左大括号前换行，但要保持一致。</li>
+<li>对于短行，可以将代码放在一行内，但不建议这么做。</li>
+</ul>
+<h1 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h1><h2 id="变量-函数命名"><a href="#变量-函数命名" class="headerlink" title="变量&#x2F;函数命名"></a>变量&#x2F;函数命名</h2><ul>
+<li><strong>命名原则</strong>：<ul>
+<li>使用能够清晰描述变量&#x2F;函数功能的命名，避免使用简短或模糊的名字。例如，<code>int total_mines;</code> 比 <code>int n;</code> 更为清晰。</li>
+</ul>
+</li>
+<li><strong>Google标准命名规则</strong>：<ul>
+<li>变量用下划线连接：<code>under_line</code></li>
+<li>常量和枚举使用 <code>k</code> 开头并采用驼峰命名法：<code>k + CamelCase</code></li>
+<li>函数方法使用驼峰命名法：<code>CamelCase</code></li>
+<li>类使用驼峰命名法：<code>CamelCase</code></li>
+<li>类&#x2F;结构体成员用下划线连接和后缀：<code>under_line_</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><ul>
+<li><p>避免使用降低可读性的宏。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> ff(i,s,t) for(int i=s;i&lt;=t;++i)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对于全局常量和简单函数，使用<code>constexpr</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.141592653589 <span class="comment">// Wrong.</span></span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">double</span> kPI = <span class="number">3.141592653589</span>; <span class="comment">// Correct.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> abs(x) (x &gt; 0 ? x : -x) <span class="comment">// Wrong.</span></span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="type">int</span> <span class="title">Absolute</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123; <span class="keyword">return</span> x &gt; <span class="number">0</span> ? x : -x; &#125; <span class="comment">// Correct.</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><ul>
+<li><p>严禁在项目中使用命名空间，这会导致命名冲突&#x2F;重命名问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; <span class="comment">// Wrong. Strictly forbidden</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果你试图定义全局变量<code>x1</code>,<code>y1</code>并使用命名空间，你的程序将无法编译。</p>
+</li>
+</ul>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><ul>
+<li>不要使用非标准头文件，比如<code>bits/stdc++.h</code>，因为这些头文件在不同的编译器中可能无法兼容。</li>
+</ul>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-11-08</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" title="编程基础">编程基础</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" title="代码规范">代码规范</a>  </span></section></article><p class="pagination"><a href="/2025/09/16/2024%20%E6%8B%8D%E6%91%84%E8%AE%B0%E5%BD%95/" title="2024 拍摄记录">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2025/11/08 15:59:54</span></div></footer></body></html>
