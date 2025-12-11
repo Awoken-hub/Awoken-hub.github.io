@@ -10,8 +10,8 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li>视频数据</li>
 <li>音频数据</li>
 </ul>
-<h1 id="视频数据"><a href="#视频数据" class="headerlink" title="视频数据"></a>视频数据</h1><p>来自 Kinect 传感器的视频数据包括低级数据（红外、彩色）以及处理后的数据（深度、人体骨骼）。这些 API 遵循标准的 WinRT 设计指南，支持所有与 WinRT 兼容的语言和 UI 框架。</p>
-<h2 id="传感器获取与启动"><a href="#传感器获取与启动" class="headerlink" title="传感器获取与启动"></a>传感器获取与启动</h2><p>Kinect for Windows 支持一个<strong>默认传感器</strong>。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758761(v=ieb.10)"><code>KinectSensor</code> 类</a>提供静态成员来帮助配置 Kinect 传感器并访问传感器数据。</p>
+<h3 id="视频数据"><a href="#视频数据" class="headerlink" title="视频数据"></a>视频数据</h3><p>来自 Kinect 传感器的视频数据包括低级数据（红外、彩色）以及处理后的数据（深度、人体骨骼）。这些 API 遵循标准的 WinRT 设计指南，支持所有与 WinRT 兼容的语言和 UI 框架。</p>
+<h4 id="传感器获取与启动"><a href="#传感器获取与启动" class="headerlink" title="传感器获取与启动"></a>传感器获取与启动</h4><p>Kinect for Windows 支持一个<strong>默认传感器</strong>。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758761(v=ieb.10)"><code>KinectSensor</code> 类</a>提供静态成员来帮助配置 Kinect 传感器并访问传感器数据。</p>
 <p>关键 API 包括：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791167(v=ieb.10)"><code>KinectSensor.GetDefault</code> 方法    </a></li>
@@ -19,7 +19,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 </ul>
 <p>如果调用进程已调用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791394(v=ieb.10)">Open</a>，则 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758619(v=ieb.10)"><code>KinectSensor.IsOpen</code> 属性</a>将返回 <code>true</code>。</p>
 <p>如果没有可用的 Kinect 传感器，<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758615(v=ieb.10)"><code>KinectSensor.IsAvailable</code> 属性</a>将返回 <code>false</code>。例如，如果用户安装了应用程序，但 PC 未连接 Kinect 传感器，则会返回 <code>false</code>。如果是这种情况，你的应用程序应该提示用户“传感器不可用”。</p>
-<h2 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h2><p>传感器提供多个数据源，包括：彩色、深度、人体、人体索引和红外。在功能上，每个数据源由以下三个部分控制：</p>
+<h4 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h4><p>传感器提供多个数据源，包括：彩色、深度、人体、人体索引和红外。在功能上，每个数据源由以下三个部分控制：</p>
 <ul>
 <li><strong>源类型</strong><ul>
 <li>检查或配置数据源，并打开源读取器。</li>
@@ -41,7 +41,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758432(v=ieb.10)"><code>ColorImageFormat</code> 枚举</a></li>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791378(v=ieb.10)"><code>ColorFrameSource.OpenReader</code> 方法</a></li>
 </ul>
-<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>开发者打开传感器后，就可以使用实例访问各个数据流：彩色、深度、人体、人体索引、红外和长曝光红外。每个数据流都分为三部分：</p>
+<h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><p>开发者打开传感器后，就可以使用实例访问各个数据流：彩色、深度、人体、人体索引、红外和长曝光红外。每个数据流都分为三部分：</p>
 <ul>
 <li><strong>流类型</strong><ul>
 <li>用于检查或设置流，并打开流读取器。</li>
@@ -81,7 +81,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <td>指向输出此流的传感器的反向指针。</td>
 </tr>
 </tbody></table>
-<h2 id="数据流读取器"><a href="#数据流读取器" class="headerlink" title="数据流读取器"></a>数据流读取器</h2><p>每个数据流都有自己的流读取器类型，但它们都有相同的基本功能。</p>
+<h4 id="数据流读取器"><a href="#数据流读取器" class="headerlink" title="数据流读取器"></a>数据流读取器</h4><p>每个数据流都有自己的流读取器类型，但它们都有相同的基本功能。</p>
 <table>
 <thead>
 <tr>
@@ -110,7 +110,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <td>指向打开此读取器的流的反向指针。</td>
 </tr>
 </tbody></table>
-<h2 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h2><p><strong>帧</strong>包含传感器采集的数据。使用帧对象将帧数据复制到应用程序的缓冲区或访问底层系统缓冲区。每个帧只会临时存储帧数据，应用程序应尽快从每个帧中获取数据并关闭&#x2F;释放它，以释放底层句柄，并确保系统不需要持续分配新内存来存储传入的帧数据。</p>
+<h4 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h4><p><strong>帧</strong>包含传感器采集的数据。使用帧对象将帧数据复制到应用程序的缓冲区或访问底层系统缓冲区。每个帧只会临时存储帧数据，应用程序应尽快从每个帧中获取数据并关闭&#x2F;释放它，以释放底层句柄，并确保系统不需要持续分配新内存来存储传入的帧数据。</p>
 <p>每个流都有自己的帧类型，它们都有相同的基本功能；尽管它们有很多共同点，但这些帧类型在不同的流之间的差异也非常大。</p>
 <table>
 <thead>
@@ -148,18 +148,18 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <td>提供一个 <strong>时间戳（<code>UInt64</code>）</strong>，表示此帧的创建时间。此值不允许使用绝对的现实世界创建时间，但允许获取帧之间的相对交付时间（来自给定 Kinect 传感器的帧内和帧间），单位为毫秒。</td>
 </tr>
 </tbody></table>
-<h2 id="红外帧"><a href="#红外帧" class="headerlink" title="红外帧"></a>红外帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>提供类似黑白照片的场景视图，但它是主动发光的，因此亮度不受位置和环境亮度的影响。红外帧非常适合依赖纹理信息的计算机视觉算法，例如面部识别。数据存储为 16 位无符号整数。红外帧也非常适合绿幕抠像、跟踪反光标记和滤除低返回的深度像素（这是造成抖动的原因）。请注意，红外帧与深度来自同一个传感器，因此图像完美对齐。例如，第 5 行第 9 列的红外像素与第 5 行第 9 列的深度像素相对应。</p>
-<h2 id="长曝光红外帧"><a href="#长曝光红外帧" class="headerlink" title="长曝光红外帧"></a>长曝光红外帧</h2><p>此帧类似于 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>，但它的曝光时间更长，图像质量更高质、噪声更少，但代价是运动中的物体会产生一些运动模糊。</p>
-<h2 id="深度帧"><a href="#深度帧" class="headerlink" title="深度帧"></a>深度帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758543(v=ieb.10)"><code>DepthFrame</code> 类</a>表示一种帧，其中每个像素代表该像素看到的最近物体的距离。此帧的数据存储为 16 位无符号整数，每个值代表以毫米为单位的距离。最大深度距离为 8 米，但可靠性在 4.5 米左右就开始下降。在 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>不足以满足需求时，开发者可以使用深度帧来构建自定义跟踪算法。</p>
-<h2 id="人体帧"><a href="#人体帧" class="headerlink" title="人体帧"></a>人体帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>包含传感器视图中所有人计算出的所有实时跟踪信息，包括骨骼关节点和方向、手部状态等，最多可同时跟踪 6 人。这些跟踪功能为在应用程序中实现人机交互提供了良好的基础。要从 <code>BodyFrame</code> 中提取此跟踪数据，请分配一个包含 6 个 body 指针的向量，并将其传递给 <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.bodyframe.getandrefreshbodydata(windows.foundation.collections.ivector%7bwindowspreview.kinect.body%7d)(v=IEB.10)"><code>BodyFrame.GetAndRefreshBodyData</code> 方法</a>。数组中的每个 body 代表可以同时跟踪的 6 个可能的 body 中每一个的跟踪信息。每个代表传感器视野中真实用户的 body 将被标记为“已跟踪”。</p>
+<h4 id="红外帧"><a href="#红外帧" class="headerlink" title="红外帧"></a>红外帧</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>提供类似黑白照片的场景视图，但它是主动发光的，因此亮度不受位置和环境亮度的影响。红外帧非常适合依赖纹理信息的计算机视觉算法，例如面部识别。数据存储为 16 位无符号整数。红外帧也非常适合绿幕抠像、跟踪反光标记和滤除低返回的深度像素（这是造成抖动的原因）。请注意，红外帧与深度来自同一个传感器，因此图像完美对齐。例如，第 5 行第 9 列的红外像素与第 5 行第 9 列的深度像素相对应。</p>
+<h4 id="长曝光红外帧"><a href="#长曝光红外帧" class="headerlink" title="长曝光红外帧"></a>长曝光红外帧</h4><p>此帧类似于 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773067(v=ieb.10)"><code>InfraredFrame</code> 类</a>，但它的曝光时间更长，图像质量更高质、噪声更少，但代价是运动中的物体会产生一些运动模糊。</p>
+<h4 id="深度帧"><a href="#深度帧" class="headerlink" title="深度帧"></a>深度帧</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758543(v=ieb.10)"><code>DepthFrame</code> 类</a>表示一种帧，其中每个像素代表该像素看到的最近物体的距离。此帧的数据存储为 16 位无符号整数，每个值代表以毫米为单位的距离。最大深度距离为 8 米，但可靠性在 4.5 米左右就开始下降。在 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>不足以满足需求时，开发者可以使用深度帧来构建自定义跟踪算法。</p>
+<h4 id="人体帧"><a href="#人体帧" class="headerlink" title="人体帧"></a>人体帧</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>包含传感器视图中所有人计算出的所有实时跟踪信息，包括骨骼关节点和方向、手部状态等，最多可同时跟踪 6 人。这些跟踪功能为在应用程序中实现人机交互提供了良好的基础。要从 <code>BodyFrame</code> 中提取此跟踪数据，请分配一个包含 6 个 body 指针的向量，并将其传递给 <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/windowspreview.kinect.bodyframe.getandrefreshbodydata(windows.foundation.collections.ivector%7bwindowspreview.kinect.body%7d)(v=IEB.10)"><code>BodyFrame.GetAndRefreshBodyData</code> 方法</a>。数组中的每个 body 代表可以同时跟踪的 6 个可能的 body 中每一个的跟踪信息。每个代表传感器视野中真实用户的 body 将被标记为“已跟踪”。</p>
 <p>要访问 body 列表，首先在启动时分配一个向量，如下所示：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> bodies = ref <span class="keyword">new</span> Platform::Collections::<span class="built_in">Vector</span>&lt;Body^&gt;(<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
 
 <p>然后，对于每一帧，像这样更新向量：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bodyFrame-&gt;<span class="built_in">GetAndRefreshBodyData</span>(bodies);</span><br></pre></td></tr></table></figure>
 
-<h2 id="人体索引帧"><a href="#人体索引帧" class="headerlink" title="人体索引帧"></a>人体索引帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772813(v=ieb.10)"><code>BodyIndexFrame</code> 类</a>表示基于深度图像计算出的帧。此图像表示哪些深度或红外像素属于被跟踪的人，哪些属于背景。此帧中的像素值是 8 位无符号整数，其中 0-5 直接映射到 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>中的 <code>BodyData</code> 索引。其余从 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772730(v=ieb.10)"><code>BodyFrameSource.BodyCount</code> 属性</a>获得的值表示该像素是背景的一部分，与跟踪的 body 无关。此帧对于绿幕应用程序或任何想要显示用户轮廓的场景非常有用。它也为自定义深度算法提供了良好的起始边界。</p>
-<h2 id="色彩帧源"><a href="#色彩帧源" class="headerlink" title="色彩帧源"></a>色彩帧源</h2><p>由于需要在流上设置一些选项，彩色帧源扩展了深度流中定义的模式。使用此源可以获取转换为所需彩色图像格式（如 RGB 或 YUV）的图像帧数据副本。无论格式如何，像素类型都将是 <code>UInt8</code>（字节）。有不同的格式的 <code>CopyRaw</code> 和 <code>LockRaw</code> 访问器，以及新的 <code>CopyConverted</code> 访问器，它们将原始图像转换为提供缓冲区中的指定格式。</p>
+<h4 id="人体索引帧"><a href="#人体索引帧" class="headerlink" title="人体索引帧"></a>人体索引帧</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772813(v=ieb.10)"><code>BodyIndexFrame</code> 类</a>表示基于深度图像计算出的帧。此图像表示哪些深度或红外像素属于被跟踪的人，哪些属于背景。此帧中的像素值是 8 位无符号整数，其中 0-5 直接映射到 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772770(v=ieb.10)"><code>BodyFrame</code> 类</a>中的 <code>BodyData</code> 索引。其余从 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772730(v=ieb.10)"><code>BodyFrameSource.BodyCount</code> 属性</a>获得的值表示该像素是背景的一部分，与跟踪的 body 无关。此帧对于绿幕应用程序或任何想要显示用户轮廓的场景非常有用。它也为自定义深度算法提供了良好的起始边界。</p>
+<h4 id="色彩帧源"><a href="#色彩帧源" class="headerlink" title="色彩帧源"></a>色彩帧源</h4><p>由于需要在流上设置一些选项，彩色帧源扩展了深度流中定义的模式。使用此源可以获取转换为所需彩色图像格式（如 RGB 或 YUV）的图像帧数据副本。无论格式如何，像素类型都将是 <code>UInt8</code>（字节）。有不同的格式的 <code>CopyRaw</code> 和 <code>LockRaw</code> 访问器，以及新的 <code>CopyConverted</code> 访问器，它们将原始图像转换为提供缓冲区中的指定格式。</p>
 <table>
 <thead>
 <tr>
@@ -196,7 +196,7 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <td>返回原始像素的颜色格式。</td>
 </tr>
 </tbody></table>
-<h2 id="多源帧"><a href="#多源帧" class="headerlink" title="多源帧"></a>多源帧</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791350(v=ieb.10)"><code>MultiSourceFrame</code> 类</a>通过单个接口提供对多种帧类型的访问。通过以下属性获取对各个帧类型的引用：</p>
+<h4 id="多源帧"><a href="#多源帧" class="headerlink" title="多源帧"></a>多源帧</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791350(v=ieb.10)"><code>MultiSourceFrame</code> 类</a>通过单个接口提供对多种帧类型的访问。通过以下属性获取对各个帧类型的引用：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772754(v=ieb.10)"><code>MultiSourceFrame.BodyFrameReference</code> 属性</a></li>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn772797(v=ieb.10)"><code>MultiSourceFrame.BodyIndexFrameReference</code> 属性</a></li>
@@ -205,6 +205,6 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn773051(v=ieb.10)"><code>MultiSourceFrame.InfraredFrameReference</code> 属性</a></li>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758815(v=ieb.10)"><code>MultiSourceFrame.LongExposureInfraredFrameReference</code> 属性</a></li>
 </ul>
-<h1 id="音频数据"><a href="#音频数据" class="headerlink" title="音频数据"></a>音频数据</h1><h2 id="音频波束帧"><a href="#音频波束帧" class="headerlink" title="音频波束帧"></a>音频波束帧</h2><p>音频数据从麦克风阵列收集，并处理成波束，以强调声源方向。波束可以设置为自动跟踪声源或瞄准特定方向。波束的声音数据被划分为帧，每帧大致对应于每个视频帧。声音帧又细分为约 16 毫秒长的子帧。</p>
+<h2 id="音频数据"><a href="#音频数据" class="headerlink" title="音频数据"></a>音频数据</h2><h4 id="音频波束帧"><a href="#音频波束帧" class="headerlink" title="音频波束帧"></a>音频波束帧</h4><p>音频数据从麦克风阵列收集，并处理成波束，以强调声源方向。波束可以设置为自动跟踪声源或瞄准特定方向。波束的声音数据被划分为帧，每帧大致对应于每个视频帧。声音帧又细分为约 16 毫秒长的子帧。</p>
 <p>用于从 Kinect 传感器获取音频数据的 WinRT API 在 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758774(v=ieb.10)"><code>WindowsPreview.Kinect</code> 命名空间</a>下的参考中有描述。</p>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/Kinect%20for%20Windows%20%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">上一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2025/12/11 13:15:50</span></div></footer></body></html>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/Kinect%20for%20Windows%20%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">上一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2025/12/11 13:24:33</span></div></footer></body></html>
