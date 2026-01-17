@@ -2,17 +2,21 @@
 CoordinateMapper类
 CoordinateMapper 类用于执行两项任务：
 
-将深度数据从 2D 图像空间投影到 3D 摄像机空间，或者从 3D 摄像机空间映射回 2D 图像空间
+将深度数据从 2D 图像空间投影到 3D 摄像机空间，或者从 3D
+摄像机空间映射回 2D 图像空间
 在深度图像上的位置与其在彩色图像上的对应位置之间进行映射。
 
 摄像机空间
-摄像机空间指的是 Kin"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+摄像机"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
-Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>坐标映射</h1></header><section class="post-body"><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn785530(v=ieb.10)">原文</a></p>
-<h3 id="CoordinateMapper类"><code>CoordinateMapper</code>类</h3>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758445(v=ieb.10)"><code>CoordinateMapper</code> 类</a>用于执行两项任务：</p>
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>坐标映射</h1></header><section class="post-body"><p><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn785530(v=ieb.10)">原文</a></p>
+<h3 id="coordinatemapper类"><code>CoordinateMapper</code>类</h3>
+<p><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn758445(v=ieb.10)"><code>CoordinateMapper</code> 类</a>用于执行两项任务：</p>
 <ul>
-<li>将深度数据从 2D 图像空间投影到 3D 摄像机空间，或者从 3D 摄像机空间映射回 2D 图像空间</li>
+<li>将深度数据从 2D 图像空间投影到 3D 摄像机空间，或者从 3D
+摄像机空间映射回 2D 图像空间</li>
 <li>在深度图像上的位置与其在彩色图像上的对应位置之间进行映射。</li>
 </ul>
 <h3 id="摄像机空间">摄像机空间</h3>
@@ -24,16 +28,27 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li>Z 轴向传感器正前方延伸</li>
 <li>1 个单位 = 1 米</li>
 </ul>
-<p>图 1. 摄像机空间坐标系<br>
-<img src="https://res.cloudinary.com/ds4pa1pt6/image/upload/v1765358273/%E6%91%84%E5%83%8F%E6%9C%BA%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E7%B3%BB_kidwz0.png" alt="https://res.cloudinary.com/ds4pa1pt6/image/upload/v1765358273/摄像机空间坐标系_kidwz0.png"></p>
+<p>图 1. 摄像机空间坐标系 <img
+src="https://res.cloudinary.com/ds4pa1pt6/image/upload/v1765358273/%E6%91%84%E5%83%8F%E6%9C%BA%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E7%B3%BB_kidwz0.png"
+alt="https://res.cloudinary.com/ds4pa1pt6/image/upload/v1765358273/%E6%91%84%E5%83%8F%E6%9C%BA%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E7%B3%BB_kidwz0.png" /></p>
 <p>请注意，这是一个 “右手”坐标系，与计算机图形学中定义摄像机空间（也称为视图空间）的方式类似。</p>
-<p>任何在 3D 空间中运行的 Kinect 追踪算法（例如骨骼追踪）都将其结果存储在摄像机空间中。在某些情况下，你可能想要将这些点中的某一个投影到深度图像上的行/列位置上，以进行进一步处理。在这种情况下，你就需要执行从摄像机空间到深度空间的映射。</p>
+<p>任何在 3D 空间中运行的 Kinect
+追踪算法（例如骨骼追踪）都将其结果存储在摄像机空间中。在某些情况下，你可能想要将这些点中的某一个投影到深度图像上的行/列位置上，以进行进一步处理。在这种情况下，你就需要执行从摄像机空间到深度空间的映射。</p>
 <h3 id="深度空间">深度空间</h3>
-<p>深度空间是一个用于描述深度图像上的二维位置的术语，可以将其视为一个像素的行/列位置，其中 x 是列，y 是行。因此，(x=0, y=0 )对应图像的左上角，而 (x=511, y=423) 对应图像的右下角（假设图像大小为 512×424）。在某些情况下，映射出深度空间还需要一个 z 值。对此，只需在相应的行/列处对深度图像进行采样，并直接使用该值（单位为毫米）作为 z。</p>
+<p>深度空间是一个用于描述深度图像上的二维位置的术语，可以将其视为一个像素的行/列位置，其中 x
+是列，y 是行。因此，(x=0, y=0 )对应图像的左上角，而 (x=511, y=423)
+对应图像的右下角（假设图像大小为
+512×424）。在某些情况下，映射出深度空间还需要一个 z
+值。对此，只需在相应的行/列处对深度图像进行采样，并直接使用该值（单位为毫米）作为
+z。</p>
 <p>深度图像上的一个常见操作是生成场景的三维点云。在这种情况下，你需要从深度空间“反投影”到摄像机空间。请注意，对深度图像的每个像素单独调用坐标映射函数的开销非常大，你需要批量处理。可以使用基于数组的函数（例如 <code>MapDepthPointsToCameraSpace</code>），或者获取映射表（<code>GetDepthFrameToCameraSpaceTable</code>）然后自己进行矩阵乘法。</p>
-<p>如果你已知一个深度像素，并希望获取对应的红外值。这个操作很简单，因为深度和红外来自 Kinect 上的同一个传感器。只需在红外图像上对相同的行/列进行采样即可。</p>
+<p>如果你已知一个深度像素，并希望获取对应的红外值。这个操作很简单，因为深度和红外来自
+Kinect 上的同一个传感器。只需在红外图像上对相同的行/列进行采样即可。</p>
 <p>如果你想获取与某个深度像素对应的彩色像素，则需要使用坐标映射器将其位置转换到彩色空间。</p>
 <h3 id="彩色空间">彩色空间</h3>
-<p>Kinect 上的彩色传感器与深度/红外传感器在位置上有一定偏移，因此，二者看到的场景视图略有不同。如果你想找到某个深度图像像素对应的颜色，就必须把它的位置转换到彩色空间。彩色空间描述了彩色图像上的二维位置，就像深度空间之于深度图像一样。因此，彩色空间中的一个位置是彩色图像上像素的行/列位置，其中 (x=0, y=0 )对应彩色图像的左上角，(x=1919, y=1079) 对应彩色图像的右下角（假设彩色图像大小为 1920×1080）。</p>
+<p>Kinect
+上的彩色传感器与深度/红外传感器在位置上有一定偏移，因此，二者看到的场景视图略有不同。如果你想找到某个深度图像像素对应的颜色，就必须把它的位置转换到彩色空间。彩色空间描述了彩色图像上的二维位置，就像深度空间之于深度图像一样。因此，彩色空间中的一个位置是彩色图像上像素的行/列位置，其中
+(x=0, y=0 )对应彩色图像的左上角，(x=1919, y=1079)
+对应彩色图像的右下角（假设彩色图像大小为 1920×1080）。</p>
 <p>从深度空间映射到彩色空间是一个常见操作，可以用于那些想要为用户生成二维彩色抠像以进行绿幕抠像或背景去除的应用程序。只需使用人体索引图像来识别哪些深度像素属于用户，然后使用坐标映射器来获取这些像素对应的颜色值。</p>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">上一篇</a><span>  </span><a href="/2025/09/12/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" title="倾斜追踪">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/15 22:33:35</span></div></footer></body></html>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">上一篇</a><span>  </span><a href="/2025/09/12/%E5%80%BE%E6%96%9C%E8%BF%BD%E8%B8%AA/" title="倾斜追踪">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/17 20:24:08</span></div></footer></body></html>

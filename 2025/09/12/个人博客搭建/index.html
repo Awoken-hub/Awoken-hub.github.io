@@ -1,132 +1,93 @@
 <!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>个人博客搭建 · null</title><meta name="description" content="一、前置工作
 1. 初期规划
-需求
-
-费用：免费
-类型：技术文档为主
-
-方案
-
-工具：GitHub Pages 和 Hexo
+需求 - 费用：免费 - 类型：技术文档为主
+方案 - 工具：GitHub Pages 和 Hexo -
 域名形式：xxx.github.io
-
 2. 搭建预备
-注册 GitHub 账号，安装 Git 和 Node.js，并输入以下指令测试安装是否成功，正常显示版本号即安装成功。"><meta name="keywords" content="教程"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+注册 GitHub 账号，安装 Git 和
+Node.js，并输入以下指令测试安装是否成功，正常"><meta name="keywords" content="教程"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
-Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>个人博客搭建</h1></header><section class="post-body"><h3 id="一、前置工作">一、前置工作</h3>
-<h4 id="1-初期规划">1. 初期规划</h4>
-<p><strong>需求</strong></p>
-<ul>
-<li>费用：免费</li>
-<li>类型：技术文档为主</li>
-</ul>
-<p><strong>方案</strong></p>
-<ul>
-<li>工具：GitHub Pages 和 Hexo</li>
-<li>域名形式：<code>xxx.github.io</code></li>
-</ul>
-<h4 id="2-搭建预备">2. 搭建预备</h4>
-<p>注册 GitHub 账号，安装 Git 和 Node.js，并输入以下指令测试安装是否成功，正常显示版本号即安装成功。</p>
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>个人博客搭建</h1></header><section class="post-body"><h3 id="一前置工作">一、前置工作</h3>
+<h4 id="初期规划">1. 初期规划</h4>
+<p><strong>需求</strong> - 费用：免费 - 类型：技术文档为主</p>
+<p><strong>方案</strong> - 工具：GitHub Pages 和 Hexo -
+域名形式：<code>xxx.github.io</code></p>
+<h4 id="搭建预备">2. 搭建预备</h4>
+<p>注册 GitHub 账号，安装 Git 和
+Node.js，并输入以下指令测试安装是否成功，正常显示版本号即安装成功。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<h3 id="二、搭建过程">二、搭建过程</h3>
-<h4 id="1-安装-Hexo">1. 安装 Hexo</h4>
-<ol>
-<li>创建用于存放博客的文件夹，我这里命名为<code>Blog_hexo_Awoken</code></li>
-<li>安装 Hexo 脚手架</li>
+<h3 id="二搭建过程">二、搭建过程</h3>
+<h4 id="安装-hexo">1. 安装 Hexo</h4>
+<ol type="1">
+<li><p>创建用于存放博客的文件夹，我这里命名为<code>Blog_hexo_Awoken</code></p></li>
+<li><p>安装 Hexo 脚手架 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p></li>
+<li><p>初始化博客文件夹 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init Blog_hexo_Awoken // 替换为你的博客文件夹名称</span><br><span class="line"><span class="built_in">cd</span> Blog_hexo_Awoken</span><br></pre></td></tr></table></figure></p></li>
+<li><p>安装依赖 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>初始化博客文件夹</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init Blog_hexo_Awoken // 替换为你的博客文件夹名称</span><br><span class="line"><span class="built_in">cd</span> Blog_hexo_Awoken</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>安装依赖</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p><strong>测试</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s // 启动服务器，默认访问网址为 http://localhost:4000</span><br></pre></td></tr></table></figure>
 <ul>
 <li>打开浏览器，可以访问<code>http://localhost:4000</code>即成功</li>
 </ul>
-<h4 id="2-生成静态文件">2. 生成静态文件</h4>
-<ol>
-<li>将写好的文章放入<code>source/_posts/</code>目录中（默认存在<code>helloworld.md</code>）</li>
-<li>生成静态网页</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean // 清理缓存和旧的生成网页</span><br><span class="line">hexo g // 生成静态网页</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>生成的网页文件在<code>public/</code>文件夹</li>
+<h4 id="生成静态文件">2. 生成静态文件</h4>
+<ol type="1">
+<li><p>将写好的文章放入<code>source/_posts/</code>目录中（默认存在<code>helloworld.md</code>）</p></li>
+<li><p>生成静态网页 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean // 清理缓存和旧的生成网页</span><br><span class="line">hexo g // 生成静态网页</span><br></pre></td></tr></table></figure></p></li>
+<li><p>生成的网页文件在<code>public/</code>文件夹</p></li>
 </ol>
 <p><strong>测试</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<h4 id="3-推送到-GitHub-Pages">3. 推送到 GitHub Pages</h4>
-<h5 id="1-新建仓库">1) 新建仓库</h5>
+<h4 id="推送到-github-pages">3. 推送到 GitHub Pages</h4>
+<h5 id="新建仓库">1) 新建仓库</h5>
 <ul>
 <li>创建一个名为<code>USERNAME.github.io</code>的仓库（<strong>仓库名必须是这个格式</strong>）</li>
 </ul>
-<h5 id="2-初始化仓库">2) 初始化仓库</h5>
+<h5 id="初始化仓库">2) 初始化仓库</h5>
 <ul>
-<li>添加文件并创建第一次提交</li>
+<li><p>添加文件并创建第一次提交 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;第一次提交&quot;</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>设置远程仓库 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/USERNAME/USERNAME.github.io.git</span><br></pre></td></tr></table></figure></p></li>
+<li><p>推送到 GitHub <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -M master</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;第一次提交&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果因为如下的<strong>网络连接问题</strong>推送到 GitHub
+失败，需要使用<strong>代理/VPN</strong>。 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Spawn failed at ChildProcess.&lt;anonymous&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="部署到-github">3) 部署到 GitHub</h5>
 <ul>
-<li>设置远程仓库</li>
+<li>以下方式二选一即可 ###### HTTPS 方式</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/USERNAME/USERNAME.github.io.git</span><br></pre></td></tr></table></figure>
-<ul>
-<li>推送到 GitHub</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -M master</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<p>如果因为如下的<strong>网络连接问题</strong>推送到 GitHub 失败，需要使用<strong>代理/VPN</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Spawn failed at ChildProcess.&lt;anonymous&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="3-部署到-GitHub">3) 部署到 GitHub</h5>
-<ul>
-<li>以下方式二选一即可</li>
-</ul>
-<h6 id="HTTPS-方式">HTTPS 方式</h6>
 <p><strong>1. 生成 Personal Access Token</strong></p>
 <ul>
-<li>登录 GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token</li>
+<li>登录 GitHub → Settings → Developer settings → Personal access tokens
+→ Tokens (classic) → Generate new token</li>
 <li>勾选 repo 权限</li>
 <li>复制生成的 token</li>
 </ul>
 <p><strong>2. 修改 Hexo 配置</strong></p>
 <ul>
-<li>修改根目录下的<code>_config.yml</code></li>
+<li>修改根目录下的<code>_config.yml</code> <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://USERNAME:TOKEN@github.com/USERNAME/USERNAME.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://USERNAME:TOKEN@github.com/USERNAME/USERNAME.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<h6 id="SSH-方式">SSH 方式</h6>
+<h6 id="ssh-方式">SSH 方式</h6>
 <ul>
 <li>未尝试成功该方式，成功后再记录。</li>
 </ul>
-<h4 id="4-部署静态网页">4. 部署静态网页</h4>
+<h4 id="部署静态网页">4. 部署静态网页</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p><strong>测试</strong></p>
 <p>打开网址<code>https://USERNAME.github.io</code>检查是否搭建成功</p>
-<h3 id="三、问题汇总">三、问题汇总</h3>
-<h4 id="1-什么时候需要git-pull">1. 什么时候需要<code>git pull</code></h4>
+<h3 id="三问题汇总">三、问题汇总</h3>
+<h4 id="什么时候需要git-pull">1. 什么时候需要<code>git pull</code></h4>
 <ul>
 <li>只需要在初始化仓库时<code>pull</code>，后续上传静态网页的操作已经被包含在<code>hexo d</code>中了</li>
 </ul>
 <p>注：本文中的仓库专指用于存放静态网页的仓库；如需要存储源码，需要另开一个仓库。</p>
-<h4 id="2-网络连接问题导致无法上传">2. 网络连接问题导致无法上传</h4>
-<h5 id="1-配置代理">1) 配置代理</h5>
-<p>这里使用 <code>Clash for Windows</code></p>
-<ul>
-<li>开启系统代理</li>
-<li>代理类型：HTTP / HTTPS</li>
-<li>代理端口：7890</li>
-</ul>
-<p><strong>测试</strong></p>
-<ul>
-<li>如浏览器能正常打开<code>github.com</code>，即配置成功</li>
-</ul>
-<h5 id="2-强制-Git-走代理端口">2) 强制 Git 走代理端口</h5>
-<p>安装<code>Proxifier</code></p>
-<blockquote>
-<p>注：该软件只有一个月的试用期</p>
-</blockquote>
-<h6 id="配置-Proxifier-代理">配置 Proxifier 代理</h6>
+<h4 id="网络连接问题导致无法上传">2. 网络连接问题导致无法上传</h4>
+<h5 id="配置代理">1) 配置代理</h5>
+<p>这里使用 <code>Clash for Windows</code> - 开启系统代理 -
+代理类型：HTTP / HTTPS - 代理端口：7890</p>
+<p><strong>测试</strong> -
+如浏览器能正常打开<code>github.com</code>，即配置成功 ##### 2) 强制 Git
+走代理端口</p>
+<p>安装<code>Proxifier</code> &gt;注：该软件只有一个月的试用期 ######
+配置 Proxifier 代理</p>
 <p><strong>1. 添加代理服务器</strong></p>
 <ul>
 <li>打开 Proxifier → 菜单 Profile → Proxy Servers → Add</li>
@@ -135,13 +96,11 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li>Address：<code>127.0.0.1</code></li>
 <li>Port：<code>7890</code></li>
 <li>Protocol：HTTP</li>
-</ul>
-</li>
+</ul></li>
 <li>点击 Check 测试连接是否成功
 <ul>
 <li>若成功，点击 OK 完成添加</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p><strong>2. 添加代理规则</strong></p>
 <ul>
@@ -149,10 +108,10 @@ Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" conte
 <li>设置规则
 <ul>
 <li>Name：Git</li>
-<li>Applications：Git 的可执行路径，我的路径如下（要替换成自己的路径）<code>D:\Software\Git\cmd\git.exe</code></li>
+<li>Applications：Git
+的可执行路径，我的路径如下（要替换成自己的路径）<code>D:\Software\Git\cmd\git.exe</code></li>
 <li>Action：刚才添加的 HTTP 代理</li>
-</ul>
-</li>
+</ul></li>
 <li>保存规则</li>
 </ul>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" title="个人博客建设">个人博客建设</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E6%95%99%E7%A8%8B/" title="教程">教程</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/Kinect%20API%20%E6%A6%82%E8%BF%B0/" title="Kinect API 概述">上一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/15 22:33:35</span></div></footer></body></html>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" title="个人博客建设">个人博客建设</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E6%95%99%E7%A8%8B/" title="教程">教程</a>  </span></section></article><p class="pagination"><a href="/2025/09/12/Kinect%20API%20%E6%A6%82%E8%BF%B0/" title="Kinect API 概述">上一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/17 20:24:08</span></div></footer></body></html>
