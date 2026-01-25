@@ -1,56 +1,61 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>Unity 射线检测原理 · null</title><meta name="description" content="检测三维空间中射线与平面碰撞的过程： 1.
-屏幕坐标转换成从摄像机的近平面上发射到远平面的一条射线 Ray 2. 射线 Ray
-与平面 Panel 求交点
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>Unity 射线检测原理 · null</title><meta name="description" content="检测三维空间中射线与平面碰撞的过程：
+
+屏幕坐标转换成从摄像机的近平面上发射到远平面的一条射线 Ray
+射线 Ray 与平面 Panel 求交点
+
 射线与平面求交点
 属性
-Ray - m_Origin ：原点 - m_Direction ：方向
-Panel - m_Normal "><meta name="keywords" content="Unity"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+Ray
+
+m_Origin ：原点
+m_Direction ：方向
+Panel
+m_Normal 法线
+m_Distance 距"><meta name="keywords" content="Unity"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
-Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>Unity 射线检测原理</h1></header><section class="post-body"><p>检测三维空间中射线与平面碰撞的过程： 1.
-屏幕坐标转换成从摄像机的近平面上发射到远平面的一条射线 Ray 2. 射线 Ray
-与平面 Panel 求交点</p>
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>Unity 射线检测原理</h1></header><section class="post-body"><p>检测三维空间中射线与平面碰撞的过程：</p>
+<ol>
+<li>屏幕坐标转换成从摄像机的近平面上发射到远平面的一条射线 Ray</li>
+<li>射线 Ray 与平面 Panel 求交点</li>
+</ol>
 <h3 id="射线与平面求交点">射线与平面求交点</h3>
 <h4 id="属性">属性</h4>
-<p>Ray - <code>m_Origin</code> ：原点 - <code>m_Direction</code> ：方向
-Panel - <code>m_Normal</code> 法线 - <code>m_Distance</code>
-距离（从原点到该平面的距离）</p>
+<p>Ray</p>
+<ul>
+<li><code>m_Origin</code> ：原点</li>
+<li><code>m_Direction</code> ：方向<br>
+Panel</li>
+<li><code>m_Normal</code> 法线</li>
+<li><code>m_Distance</code> 距离（从原点到该平面的距离）</li>
+</ul>
 <h4 id="射线与平面的交点检测接口">射线与平面的交点检测接口</h4>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">Raycast</span>(<span class="params">Ray ray, <span class="keyword">out</span> <span class="built_in">float</span> enter</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">float</span> vdot = Vector3.Dot(ray.direction, m_Normal);</span><br><span class="line">    <span class="built_in">float</span> ndot = -Vector3.Dot(ray.origin, m_Normal) - m_Distance;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 若cosθ接近0，表示射线与平面几乎平行</span></span><br><span class="line">    <span class="keyword">if</span> (Mathf.Approximately(vdot, <span class="number">0.0f</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        enter = <span class="number">0.0F</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    enter = ndot / vdot;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> enter &gt; <span class="number">0.0F</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>dot</code>
-：射线方向与平面法线求点积，得到两向量夹角θ的cos值</li>
+<li><code>dot</code> ：射线方向与平面法线求点积，得到两向量夹角θ的cos值</li>
 <li><code>ndot</code>
 <ul>
-<li>三维空间中的平面可以表示为 <span
-class="math inline"><em>n⃗</em> · <em>x⃗</em> + <em>d</em> = 0</span>
-，其中
+<li>三维空间中的平面可以表示为 \vec{n}·\vec{x} + d = 0 ，其中
 <ul>
-<li><span class="math inline"><em>n⃗</em></span> 表示平面的法向量</li>
-<li><span class="math inline"><em>x⃗</em></span> 表示平面上任意一点</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>n</mi></mrow><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.71444em;"></span><span class="strut bottom" style="height:0.71444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">n</span></span></span><span style="top:0em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 表示平面的法向量</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>x</mi></mrow><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.71444em;"></span><span class="strut bottom" style="height:0.71444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">x</span></span></span><span style="top:0em;margin-left:0.05556em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 表示平面上任意一点</li>
 <li><code>d</code> 表示平面到原点的距离</li>
-</ul></li>
-<li>三维空间中的射线可以表示为 <span
-class="math inline"><em>r</em>(<em>t</em>) = <em>o⃗</em> + <em>t</em><em>d⃗</em></span>
-，其中
+</ul>
+</li>
+<li>三维空间中的射线可以表示为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mover accent="true"><mrow><mi>o</mi></mrow><mo>⃗</mo></mover><mo>+</mo><mi>t</mi><mover accent="true"><mrow><mi>d</mi></mrow><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">r(t) = \vec{o} + t\vec{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9778799999999999em;"></span><span class="strut bottom" style="height:1.2278799999999999em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">o</span></span></span><span style="top:0em;margin-left:0.11112em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord mathit">t</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">d</span></span></span><span style="top:-0.26343999999999995em;margin-left:0.33334em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> ，其中
 <ul>
-<li><span class="math inline"><em>o⃗</em></span> 表示射线的原点</li>
-<li><span class="math inline"><em>d⃗</em></span> 表示射线的方向</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>o</mi></mrow><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{o}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.71444em;"></span><span class="strut bottom" style="height:0.71444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">o</span></span></span><span style="top:0em;margin-left:0.11112em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 表示射线的原点</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>d</mi></mrow><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9778799999999999em;"></span><span class="strut bottom" style="height:0.9778799999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">d</span></span></span><span style="top:-0.26343999999999995em;margin-left:0.33334em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body accent-vec"><span>⃗</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 表示射线的方向</li>
 <li><code>t</code> 为参数，大于0时射线才存在</li>
-</ul></li>
-<li>将以上两式联立，得到 <span
-class="math inline"><em>n⃗</em> · (<em>o⃗</em> + <em>t</em><em>d⃗</em>) + <em>d</em> = 0</span>，解得
-<span class="math inline">$t = \frac{-d - \vec{n} · \vec{o}}{\vec{n} ·
-\vec{d}}$</span> ，<code>ndot</code> 即该式的分子部分</li>
-</ul></li>
-<li><code>enter</code> 即上式中的参数 <code>t</code>
-，只有大于0时才表示射线存在，即射线与平面有交点。</li>
+</ul>
+</li>
+<li>将以上两式联立，得到 \vec{n}·(\vec{o} + t\vec{d}) + d = 0，解得 t = \frac{-d - \vec{n} · \vec{o}}{\vec{n} · \vec{d}} ，<code>ndot</code> 即该式的分子部分</li>
+</ul>
+</li>
+<li><code>enter</code> 即上式中的参数 <code>t</code> ，只有大于0时才表示射线存在，即射线与平面有交点。</li>
 </ul>
 <h3 id="参考内容">参考内容</h3>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/585528006">Unity
-射线检测的原理分析</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://jackwzx.github.io/2025/06/30/3D%E5%B9%B3%E9%9D%A2%E6%96%B9%E7%A8%8B%E4%B8%8E%E6%B3%95%E5%90%91%E9%87%8F%E8%AF%A6%E8%A7%A3/">3D图形学中的平面方程：从线性代数到Vector4f表示
-| Xujing的博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/585528006">Unity 射线检测的原理分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://jackwzx.github.io/2025/06/30/3D%E5%B9%B3%E9%9D%A2%E6%96%B9%E7%A8%8B%E4%B8%8E%E6%B3%95%E5%90%91%E9%87%8F%E8%AF%A6%E8%A7%A3/">3D图形学中的平面方程：从线性代数到Vector4f表示 | Xujing的博客</a></li>
 </ul>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2026-01-14</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Unity-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Unity 基础知识">Unity 基础知识</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Unity/" title="Unity">Unity</a>  </span></section></article><p class="pagination"><a href="/2026/01/17/Latex%20%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%E6%B5%8B%E8%AF%95/" title="Latex 公式渲染测试">上一篇</a><span>  </span><a href="/2026/01/04/UML%20%E5%9B%BE/" title="UML 图">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/17 22:47:46</span></div></footer></body></html>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2026-01-14</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Unity-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Unity 基础知识">Unity 基础知识</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Unity/" title="Unity">Unity</a>  </span></section></article><p class="pagination"><a href="/2026/01/17/Latex%20%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%E6%B5%8B%E8%AF%95/" title="Latex 公式渲染测试">上一篇</a><span>  </span><a href="/2026/01/04/UML%20%E5%9B%BE/" title="UML 图">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/26 01:24:14</span></div></footer></body></html>
