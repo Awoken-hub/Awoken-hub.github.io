@@ -1,33 +1,55 @@
 <!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="不眠觉"><title>高清面部追踪 · null</title><meta name="description" content="原文
-高清面部追踪 API 主要支持两种场景：帮助玩家融入游戏，并在玩家与游戏之间建立更强烈的情感连接。
+高清面部追踪 API
+主要支持两种场景：帮助玩家融入游戏，并在玩家与游戏之间建立更强烈的情感连接。
 
-面部捕捉 — 使用 API 获取玩家面部的形状。API 会告知游戏开发者用户需要位于摄像头视图中的哪个位置、所捕获帧的质量，并在捕获到足够多的有效帧后计算用户的面部形状并将这些数据提供给游戏开"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+面部捕捉 — 使用 API 获取玩家面部的形状。API
+会告知游戏开发者用户需要位于摄像头视图中的哪个位置、所捕获帧的质量，并在捕获到足够多的有效帧后计算用户的面部形状并将这些数据提"><meta name="keywords" content="Kinect,翻译"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/logo.png"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>:root { --normal-font-face: 'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', 'Times New Roman', Times, serif; }</style><script src="/js_complied/bundle.js"></script><script>Utils.loadCSS("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 Utils.loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");
-Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>高清面部追踪</h1></header><section class="post-body"><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn785525(v=ieb.10)">原文</a></p>
-<p>高清面部追踪 API 主要支持两种场景：帮助玩家融入游戏，并在玩家与游戏之间建立更强烈的情感连接。</p>
+Utils.loadCSS("/css/font-awesome.min.css");</script><meta name="generator" content="Hexo 7.3.0"></head><body class="post-page"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&amp;family=Noto+Serif+KR:wght@200..900&amp;family=Noto+Serif+SC:wght@200..900&amp;family=Noto+Serif+TC:wght@200..900&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"></noscript><nav class="nav"><a href="/">首页</a>&nbsp;&nbsp;<a href="/categories">分类</a>&nbsp;&nbsp;<a href="/archives">时间轴</a>&nbsp;&nbsp;<a href="/tags">标签</a>&nbsp;&nbsp;<a href="/about">关于</a>&nbsp;&nbsp;<a href="/links">友链</a>&nbsp;&nbsp;<a href="/search">搜索</a>&nbsp;&nbsp;<a href="javascript:SoSimple.darkLightToggle()">夜间/日间模式</a></nav><main class="main"><article class="post-container post-full"><header class="post-title"><h1>高清面部追踪</h1></header><section class="post-body"><p><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn785525(v=ieb.10)">原文</a></p>
+<p>高清面部追踪 API
+主要支持两种场景：帮助玩家融入游戏，并在玩家与游戏之间建立更强烈的情感连接。</p>
 <ul>
-<li>面部捕捉 — 使用 API 获取玩家面部的形状。API 会告知游戏开发者用户需要位于摄像头视图中的哪个位置、所捕获帧的质量，并在捕获到足够多的有效帧后计算用户的面部形状并将这些数据提供给游戏开发者。随后，游戏开发者可以利用这些形状参数影响游戏角色的外观设计（例如，使玩家的游戏内角色看起来更像玩家本人）。</li>
-<li>面部追踪 — 使用 API 获取用户的实时面部表情，用于驱动游戏内玩家角色的动画。对于每一帧，开发者都将获得与玩家面部运动相关的动画单元。这既可以应用于已塑形为类似玩家外貌的游戏角色，也可以应用于与玩家外貌不同的通用游戏虚拟形象。此功能可与面部捕捉结合使用，也可单独使用。</li>
+<li>面部捕捉 — 使用 API 获取玩家面部的形状。API
+会告知游戏开发者用户需要位于摄像头视图中的哪个位置、所捕获帧的质量，并在捕获到足够多的有效帧后计算用户的面部形状并将这些数据提供给游戏开发者。随后，游戏开发者可以利用这些形状参数影响游戏角色的外观设计（例如，使玩家的游戏内角色看起来更像玩家本人）。</li>
+<li>面部追踪 — 使用 API
+获取用户的实时面部表情，用于驱动游戏内玩家角色的动画。对于每一帧，开发者都将获得与玩家面部运动相关的动画单元。这既可以应用于已塑形为类似玩家外貌的游戏角色，也可以应用于与玩家外貌不同的通用游戏虚拟形象。此功能可与面部捕捉结合使用，也可单独使用。</li>
 </ul>
 <h3 id="输入">输入</h3>
-<p>WinRT API 会自动收集其输入。当开发者启动面部捕捉或订阅面部追踪流时，WinRT API 会将 Kinect 的彩色、深度和红外图像作为输入提供给 <code>FaceModelBuilder</code> 或高清面部追踪。</p>
-<p>追踪质量可能会受到这些输入帧图像质量的影响（即，较暗、模糊的帧追踪效果比明亮、清晰的帧差）。此外，较大、较近的面部比较小的面部追踪效果更好。API 仅会追踪那些 NUI 骨骼系统已识别出头部和颈部关节的帧。</p>
+<p>WinRT API
+会自动收集其输入。当开发者启动面部捕捉或订阅面部追踪流时，WinRT API 会将
+Kinect
+的彩色、深度和红外图像作为输入提供给 <code>FaceModelBuilder</code> 或高清面部追踪。</p>
+<p>追踪质量可能会受到这些输入帧图像质量的影响（即，较暗、模糊的帧追踪效果比明亮、清晰的帧差）。此外，较大、较近的面部比较小的面部追踪效果更好。API 仅会追踪那些
+NUI 骨骼系统已识别出头部和颈部关节的帧。</p>
 <p>如果面部已被捕捉过，并且使用捕捉的输出来初始化面部追踪，追踪质量会更高。因为此时面部追踪器使用的是用户面部的精确几何形状，而不是平均几何形状，从而获得更准确的面部运动特征。</p>
 <h3 id="输出">输出</h3>
-<p>面部捕捉 API 输出一个面部形状，其定义为一组应用于面部模型的参数。这些参数包括一个指示面部大小的比例因子，以及一组指示面部形状与平均形状差异程度的形状单元（SU）权重。这组形状单元用于估算用户头部的特定形状：例如眉毛、鼻子、脸颊、嘴巴或下巴等特征的形状。</p>
-<p>在面部追踪过程中，API 会输出一个面部朝向、一个头部枢轴点以及一个动画单元列表（AUs）。</p>
+<p>面部捕捉 API
+输出一个面部形状，其定义为一组应用于面部模型的参数。这些参数包括一个指示面部大小的比例因子，以及一组指示面部形状与平均形状差异程度的形状单元（SU）权重。这组形状单元用于估算用户头部的特定形状：例如眉毛、鼻子、脸颊、嘴巴或下巴等特征的形状。</p>
+<p>在面部追踪过程中，API
+会输出一个面部朝向、一个头部枢轴点以及一个动画单元列表（AUs）。</p>
 <p>动画单元是相对于中性形状的偏移量，你可以使用它们来变形指定的动画虚拟形象模型，使虚拟形象表现出被追踪的用户的面部动作。例如，动画单元定义了嘴巴是否张开、眉毛是否抬起等面部表情细节。</p>
 <h4 id="朝向与位置">朝向与位置</h4>
-<p>高清面部追踪返回的面部朝向是一个四元数，其解释与 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791601(v=ieb.10)"><code>FaceRotationQuaternion</code> 属性</a>相同。</p>
-<p><strong>头部枢轴点</strong>是计算出的头部中心，面部可围绕该点旋转。该点定义在 Kinect 人体坐标系中：原点位于相机的光学中心（传感器），Z 轴指向用户，Y 轴指向上方。测量单位为米。头部枢轴点与身体的头部关节点类似，但具有不同的垂直坐标（更适合作为旋转中心）。</p>
+<p>高清面部追踪返回的面部朝向是一个四元数，其解释与 <a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791601(v=ieb.10)"><code>FaceRotationQuaternion</code> 属性</a>相同。</p>
+<p><strong>头部枢轴点</strong>是计算出的头部中心，面部可围绕该点旋转。该点定义在 Kinect
+人体坐标系中：原点位于相机的光学中心（传感器），Z 轴指向用户，Y
+轴指向上方。测量单位为米。头部枢轴点与身体的头部关节点类似，但具有不同的垂直坐标（更适合作为旋转中心）。</p>
 <h4 id="动画单元">动画单元</h4>
-<p>该 API 追踪 17 个动画单元。大多数动画单元的权重范围为 0 到 1 ，其中有三个（下颌右滑、右眉下压、左眉下压）范围为 -1 到 +1 。</p>
-<p>动画单元的索引定义在<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791602(v=ieb.10)"> <code>FaceShapeAnimations</code> 枚举</a>中，其数量和含义可能会有变动。</p>
+<p>该 API 追踪 17 个动画单元。大多数动画单元的权重范围为 0 到 1
+，其中有三个（下颌右滑、右眉下压、左眉下压）范围为 -1 到 +1 。</p>
+<p>动画单元的索引定义在<a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791602(v=ieb.10)"> <code>FaceShapeAnimations</code> 枚举</a>中，其数量和含义可能会有变动。</p>
 <h4 id="形状单元">形状单元</h4>
-<p>共有 70 多个形状单元。形状单元的权重范围通常在 -2 到 +2 之间，但也可能超出该范围。</p>
-<p>有关形状单元的完整列表，请参阅 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791604(v=ieb.10)"><code>FaceShapeDeformations</code> 枚举</a>。形状单元的数量和含义可能会有变动。</p>
+<p>共有 70 多个形状单元。形状单元的权重范围通常在 -2 到 +2
+之间，但也可能超出该范围。</p>
+<p>有关形状单元的完整列表，请参阅 <a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791604(v=ieb.10)"><code>FaceShapeDeformations</code> 枚举</a>。形状单元的数量和含义可能会有变动。</p>
 <h4 id="面部模型">面部模型</h4>
-<p>您可以选择性地读取通过面部捕捉计算出的 3D 面部模型，包括网格中的每个顶点和三角形。</p>
-<p>部分网格顶点具有被预定好的含义，例如鼻尖和右眼外角。有关高精度面部点的完整列表，请参阅 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791778(v=ieb.10)"><code>HighDetailFacePoints</code> 枚举</a>。</p>
-<p>这些顶点的用途与 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791576(v=ieb.10)"><code>FaceFrame</code> 类</a>中的属性类似。不建议在屏幕上渲染此追踪模型，调试除外。</p>
-</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/16/2022%20%E6%8B%8D%E6%91%84%E8%AE%B0%E5%BD%95/" title="2022 拍摄记录">上一篇</a><span>  </span><a href="/2025/09/12/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/01/26 01:24:14</span></div></footer></body></html>
+<p>您可以选择性地读取通过面部捕捉计算出的 3D
+面部模型，包括网格中的每个顶点和三角形。</p>
+<p>部分网格顶点具有被预定好的含义，例如鼻尖和右眼外角。有关高精度面部点的完整列表，请参阅 <a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791778(v=ieb.10)"><code>HighDetailFacePoints</code> 枚举</a>。</p>
+<p>这些顶点的用途与 <a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/windows/kinect/dn791576(v=ieb.10)"><code>FaceFrame</code> 类</a>中的属性类似。不建议在屏幕上渲染此追踪模型，调试除外。</p>
+</section><section class="post-meta"><span class="info"><i class="fa fa-calendar"></i> <span class="date">2025-09-12</span>  </span><span class="info"><i class="fa fa-folder-o"></i> <a href="/categories/Kinect-for-Windows-%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/" title="Kinect for Windows 编程指南">Kinect for Windows 编程指南</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/Kinect/" title="Kinect">Kinect</a>  </span><span class="info"><i class="fa fa-tag"></i> <a href="/tags/%E7%BF%BB%E8%AF%91/" title="翻译">翻译</a>  </span></section></article><p class="pagination"><a href="/2025/09/16/2022%20%E6%8B%8D%E6%91%84%E8%AE%B0%E5%BD%95/" title="2022 拍摄记录">上一篇</a><span>  </span><a href="/2025/09/12/%E9%9D%A2%E9%83%A8%E8%BF%BD%E8%B8%AA/" title="面部追踪">下一篇</a></p></main><footer class="footer"><br><div class="deployment-info" style="text-align: center; margin: 1rem 0; padding: 0.5rem; background-color: rgba(0,0,0,0.03); border-radius: 4px; font-size: 14px; color: #666;"><i class="fas fa-clock"></i> 最后更新时间:<span style="color: #333; font-weight: bold;">2026/03/23 19:25:17</span></div></footer></body></html>
